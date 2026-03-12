@@ -23,7 +23,7 @@ export default function Navbar() {
             Menu
           </a>
           <a href="#contact" className="transition hover:text-white">
-            Book
+            Inquire
           </a>
           <a
             href="https://www.instagram.com/sanbanyakitori"
