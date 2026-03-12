@@ -143,7 +143,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-4xl px-6 py-20 text-center">
 
             <h2 className="text-3xl font-semibold">
-              Book Sạn Ban Yakitori
+              Book San Bạn Yakitori
             </h2>
 
             <p className="mx-auto mt-4 max-w-xl text-stone-300">
