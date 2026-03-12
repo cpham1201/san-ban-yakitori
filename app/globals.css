@@ -14,3 +14,7 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+input[type="date"] {
+  width: 100%;
+}

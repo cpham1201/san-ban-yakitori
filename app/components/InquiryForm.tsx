@@ -80,8 +80,10 @@ export default function InquiryForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-2xl space-y-5 text-left">
+
+      {/* NAME / EMAIL */}
       <div className="grid gap-5 sm:grid-cols-2">
-        <div>
+        <div className="min-w-0">
           <label htmlFor="name" className="mb-2 block text-sm text-stone-300">
             Name
           </label>
@@ -91,11 +93,11 @@ export default function InquiryForm() {
             value={form.name}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
 
-        <div>
+        <div className="min-w-0">
           <label htmlFor="email" className="mb-2 block text-sm text-stone-300">
             Email
           </label>
@@ -106,13 +108,14 @@ export default function InquiryForm() {
             value={form.email}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
       </div>
 
+      {/* PHONE / DATE */}
       <div className="grid gap-5 sm:grid-cols-2">
-        <div>
+        <div className="min-w-0">
           <label htmlFor="phone" className="mb-2 block text-sm text-stone-300">
             Phone
           </label>
@@ -122,11 +125,11 @@ export default function InquiryForm() {
             value={form.phone}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
 
-        <div>
+        <div className="min-w-0">
           <label htmlFor="eventDate" className="mb-2 block text-sm text-stone-300">
             Event Date
           </label>
@@ -138,13 +141,14 @@ export default function InquiryForm() {
             value={form.eventDate}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full min-w-0 max-w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
       </div>
 
+      {/* GUEST COUNT / EVENT TYPE */}
       <div className="grid gap-5 sm:grid-cols-2">
-        <div>
+        <div className="min-w-0">
           <label htmlFor="guestCount" className="mb-2 block text-sm text-stone-300">
             Guest Count
           </label>
@@ -156,11 +160,11 @@ export default function InquiryForm() {
             value={form.guestCount}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
 
-        <div>
+        <div className="min-w-0">
           <label htmlFor="eventType" className="mb-2 block text-sm text-stone-300">
             Event Type
           </label>
@@ -190,7 +194,8 @@ export default function InquiryForm() {
         </div>
       </div>
 
-      <div>
+      {/* MESSAGE */}
+      <div className="min-w-0">
         <label htmlFor="message" className="mb-2 block text-sm text-stone-300">
           Tell us about your event
         </label>
@@ -201,11 +206,12 @@ export default function InquiryForm() {
           value={form.message}
           onChange={updateField}
           required
-          className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+          className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           placeholder="Location, event details, menu interest, or anything else you'd like us to know."
         />
       </div>
 
+      {/* SUBMIT */}
       <div className="pt-4 text-center">
         <button
           type="submit"
