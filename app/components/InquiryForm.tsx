@@ -91,7 +91,7 @@ export default function InquiryForm() {
             value={form.name}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
 
@@ -106,7 +106,7 @@ export default function InquiryForm() {
             value={form.email}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
       </div>
@@ -122,7 +122,7 @@ export default function InquiryForm() {
             value={form.phone}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
 
@@ -138,7 +138,7 @@ export default function InquiryForm() {
             value={form.eventDate}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
       </div>
@@ -156,7 +156,7 @@ export default function InquiryForm() {
             value={form.guestCount}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
 
@@ -164,21 +164,29 @@ export default function InquiryForm() {
           <label htmlFor="eventType" className="mb-2 block text-sm text-stone-300">
             Event Type
           </label>
-          <select
-            id="eventType"
-            name="eventType"
-            value={form.eventType}
-            onChange={updateField}
-            required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-white/40"
-          >
-            <option value="">Select one</option>
-            <option value="Private Event">Birthday Party</option>
-            <option value="Pop-Up">Engagement Party</option>
-            <option value="Other">Wedding</option>
-            <option value="Catering">Baby Shower</option>
-            <option value="Other">Other</option>
-          </select>
+
+          <div className="relative">
+            <select
+              id="eventType"
+              name="eventType"
+              value={form.eventType}
+              onChange={updateField}
+              required
+              className="w-full appearance-none rounded-2xl border border-white/15 bg-black px-4 py-3.5 pr-10 text-white outline-none transition focus:border-white/40"
+            >
+              <option value="">Select one</option>
+              <option>Birthday</option>
+              <option>Corporate Event</option>
+              <option>Wedding</option>
+              <option>Engagement Party</option>
+              <option>Private Party</option>
+              <option>Other</option>
+            </select>
+
+            <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-stone-400">
+              ▾
+            </div>
+          </div>
         </div>
       </div>
 
@@ -193,18 +201,18 @@ export default function InquiryForm() {
           value={form.message}
           onChange={updateField}
           required
-          className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3 text-white outline-none transition focus:border-white/40"
+          className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           placeholder="Location, event details, menu interest, or anything else you'd like us to know."
         />
       </div>
 
       <div className="pt-4 text-center">
         <button
-        type="submit"
-        disabled={isSubmitting}
-        className="rounded-full border border-white/40 px-10 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
+          type="submit"
+          disabled={isSubmitting}
+          className="rounded-full border border-white/40 px-10 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
         >
-        {isSubmitting ? "SENDING..." : "SEND INQUIRY"}
+          {isSubmitting ? "SENDING..." : "SEND INQUIRY"}
         </button>
       </div>
 

@@ -60,37 +60,35 @@ export default function HomePage() {
       <main className="min-h-screen bg-black text-white">
 
         {/* HERO */}
-        <section id="#" className="border-b border-white/10 bg-black">
-          <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 pb-24 text-center">
-
+        <section className="border-b border-white/10 bg-black">
+          <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 px-6 pt-10 pb-16 text-center sm:gap-6 sm:pt-12 sm:pb-24">
             <Image
               src="/logo.png"
               alt="San Ban Yakitori"
               width={260}
               height={260}
-              className="mb-2 object-contain"
+              className="mb-2 h-auto w-40 object-contain sm:w-52 md:w-64"
             />
 
-            <p className="max-w-xl text-xl text-stone-300">
+            <p className="max-w-xs text-xl leading-tight text-stone-300 sm:max-w-xl sm:text-xl md:text-2xl">
               Japanese yakitori grilled over binchotan charcoal, served fresh at your next event.
             </p>
 
-            <div className="flex gap-6">
+            <div className="flex w-full max-w-sm flex-col gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:gap-6">
               <a
                 href="#menu"
-                className="rounded-full border border-white/40 px-10 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black"
+                className="rounded-full border border-white/40 px-8 py-3 text-center text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black"
               >
                 View Menu
               </a>
 
               <a
                 href="#contact"
-                className="rounded-full border border-white/40 px-10 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black"
+                className="rounded-full border border-white/40 px-8 py-3 text-center text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black"
               >
                 Inquire
               </a>
             </div>
-
           </div>
         </section>
 
