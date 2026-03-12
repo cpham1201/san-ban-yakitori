@@ -3,38 +3,57 @@ import { Instagram } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-black">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+
+        {/* Logo */}
         <a href="#" className="flex items-center gap-3">
           <Image
             src="/logo.png"
-            alt="San Bn Yakitori logo"
-            width={40}
-            height={40}
-            className="h-10 w-10 object-contain"
+            alt="San Ban Yakitori"
+            width={28}
+            height={28}
           />
-          <span className="text-sm font-semibold uppercase tracking-[0.28em] text-white">
-            San Bạn Yakitori
+          <span className="text-sm font-semibold tracking-widest">
+            SAN BAN YAKITORI
           </span>
         </a>
 
-        <div className="flex gap-6 text-sm text-stone-300">
-          <a href="#menu" className="transition hover:text-white">
+        {/* Navigation */}
+        <nav className="flex items-center gap-8 text-sm text-stone-300">
+
+          <a
+            href="#packages"
+            className="transition hover:text-white"
+          >
+            Packages
+          </a>
+
+          <a
+            href="#menu"
+            className="transition hover:text-white"
+          >
             Menu
           </a>
-          <a href="#contact" className="transition hover:text-white">
+
+          <a
+            href="#contact"
+            className="transition hover:text-white"
+          >
             Inquire
           </a>
+
           <a
-            href="https://www.instagram.com/sanbanyakitori"
+            href="https://instagram.com/sanbanyakitori"
             target="_blank"
             rel="noreferrer"
             className="transition hover:text-white"
           >
-            <Instagram size={20} />
+            <Instagram size={18} />
           </a>
-        </div>
+
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }
