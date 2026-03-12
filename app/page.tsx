@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Image from "next/image";
-import { Instagram, Mail } from "lucide-react";
+import { Instagram, Mail, Phone } from "lucide-react";
 
 export default function HomePage() {
   const menuA = [
@@ -38,8 +38,7 @@ export default function HomePage() {
             />
 
             <p className="max-w-xl text-lg text-stone-300">
-              Japanese charcoal-grilled yakitori for pop-ups, private events,
-              and catering.
+              Japanese yakitori, grilled over binchotan charcoal and served fresh at your next event.
             </p>
 
             <div className="flex gap-4">
@@ -136,38 +135,42 @@ export default function HomePage() {
 
 
         {/* CONTACT */}
-        <section
-          id="contact"
-          className="border-t border-white/10"
-        >
-          <div className="mx-auto max-w-4xl px-6 py-20 text-center">
+        <section id="contact" className="border-t border-stone-800 bg-stone-900/50">
+          <div className="mx-auto max-w-4xl px-6 py-16 text-center">
 
-            <h2 className="text-3xl font-semibold">
-              Book San Bạn Yakitori
-            </h2>
-
-            <p className="mx-auto mt-4 max-w-xl text-stone-300">
-              Reach out to book catering, pop-ups, or private events.
+            <p className="text-lg text-stone-300 leading-relaxed max-w-xl mx-auto">
+              Please inquire by email, Instagram DM, or text for pop-ups, private events, and gatherings. We look forward to serving you and your guests!
             </p>
 
-            <div className="mt-8 flex justify-center gap-4">
+            <div className="mt-10 flex justify-center gap-6">
 
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              className="rounded-full border border-white/30 p-4 text-white transition hover:bg-white hover:text-black"
-            >
-              <Instagram size={20} />
-            </a>
+              {/* Instagram */}
+              <a
+                href="https://instagram.com/sanbanyakitori"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/30 p-4 text-white transition hover:bg-white hover:text-black"
+              >
+                <Instagram size={22} />
+              </a>
 
-            <a
-              href="mailto:bookings@sanbanyakitori.com"
-              className="rounded-full border border-white/30 p-4 text-white transition hover:bg-white hover:text-black"
-            >
-              <Mail size={20} />
-            </a>
+              {/* Email */}
+              <a
+                href="mailto:bookings@sanbanyakitori.com"
+                className="rounded-full border border-white/30 p-4 text-white transition hover:bg-white hover:text-black"
+              >
+                <Mail size={22} />
+              </a>
 
-          </div>
+              {/* Text Message */}
+              <a
+                href="sms:17147469119?body=Hi, I'm interested in booking San Ban Yakitori for an event."
+                className="rounded-full border border-white/30 p-4 text-white transition hover:bg-white hover:text-black"
+              >
+                <Phone size={22} />
+              </a>
+
+            </div>
 
           </div>
         </section>
