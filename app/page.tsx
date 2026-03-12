@@ -109,7 +109,7 @@ export default function HomePage() {
             </p>
 
             <p className="mx-auto mt-6 max-w-xl leading-7 text-stone-300">
-              We&apos;re a pop-up catering service serving the Orange County area,
+              We&apos;re a pop-up catering service serving the Orange County & Los Angeles area,
               perfect for private events, parties, and special gatherings.
             </p>
 

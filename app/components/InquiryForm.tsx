@@ -80,7 +80,6 @@ export default function InquiryForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-2xl space-y-5 text-left">
-
       {/* NAME / EMAIL */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="min-w-0">
@@ -133,16 +132,19 @@ export default function InquiryForm() {
           <label htmlFor="eventDate" className="mb-2 block text-sm text-stone-300">
             Event Date
           </label>
-          <input
-            id="eventDate"
-            name="eventDate"
-            type="date"
-            min={new Date().toISOString().split("T")[0]}
-            value={form.eventDate}
-            onChange={updateField}
-            required
-            className="w-full min-w-0 max-w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
-          />
+
+          <div className="relative w-full overflow-hidden rounded-2xl border border-white/15 bg-black">
+            <input
+              id="eventDate"
+              name="eventDate"
+              type="date"
+              min={new Date().toISOString().split("T")[0]}
+              value={form.eventDate}
+              onChange={updateField}
+              required
+              className="block h-[54px] w-full min-w-0 max-w-full appearance-none bg-transparent px-4 py-3.5 text-white outline-none [color-scheme:dark]"
+            />
+          </div>
         </div>
       </div>
 
