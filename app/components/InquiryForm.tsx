@@ -2,6 +2,14 @@
 
 import { FormEvent, useState } from "react";
 
+function getTodayString() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 export default function InquiryForm() {
   const [form, setForm] = useState({
     name: "",
@@ -14,6 +22,7 @@ export default function InquiryForm() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
     message: string;
@@ -25,9 +34,21 @@ export default function InquiryForm() {
   function updateField(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
+    const { name, value } = e.target;
+
+    if (name === "eventDate" && value && value < getTodayString()) {
+      setStatus({
+        type: "error",
+        message: "Please select today or a future date.",
+      });
+      return;
+    }
+
+    setStatus({ type: null, message: "" });
+
     setForm((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   }
 
@@ -35,6 +56,17 @@ export default function InquiryForm() {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus({ type: null, message: "" });
+
+    const today = getTodayString();
+
+    if (form.eventDate && form.eventDate < today) {
+      setStatus({
+        type: "error",
+        message: "Please select today or a future date.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch("/api/inquiry", {
@@ -65,6 +97,7 @@ export default function InquiryForm() {
         eventType: "",
         message: "",
       });
+
     } catch (error) {
       setStatus({
         type: "error",
@@ -79,101 +112,116 @@ export default function InquiryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-2xl space-y-5 text-left">
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto mt-8 max-w-2xl space-y-5 text-left"
+    >
+
       {/* NAME / EMAIL */}
       <div className="grid gap-5 sm:grid-cols-2">
+
         <div className="min-w-0">
-          <label htmlFor="name" className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-sm text-stone-300">
             Name
           </label>
+
           <input
-            id="name"
             name="name"
             value={form.name}
             onChange={updateField}
             required
-            className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
 
         <div className="min-w-0">
-          <label htmlFor="email" className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-sm text-stone-300">
             Email
           </label>
+
           <input
-            id="email"
             name="email"
             type="email"
             value={form.email}
             onChange={updateField}
             required
-            className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
+
       </div>
+
 
       {/* PHONE / DATE */}
       <div className="grid gap-5 sm:grid-cols-2">
+
         <div className="min-w-0">
-          <label htmlFor="phone" className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-sm text-stone-300">
             Phone
           </label>
+
           <input
-            id="phone"
             name="phone"
             value={form.phone}
             onChange={updateField}
             required
-            className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
         </div>
 
         <div className="min-w-0">
-          <label htmlFor="eventDate" className="mb-2 block text-sm text-stone-300">
+
+          <label className="mb-2 block text-sm text-stone-300">
             Event Date
           </label>
 
           <div className="relative w-full overflow-hidden rounded-2xl border border-white/15 bg-black">
             <input
-              id="eventDate"
               name="eventDate"
               type="date"
-              min={new Date().toISOString().split("T")[0]}
+              min={getTodayString()}
               value={form.eventDate}
               onChange={updateField}
               required
-              className="block h-[54px] w-full min-w-0 max-w-full appearance-none bg-transparent px-4 py-3.5 text-white outline-none [color-scheme:dark]"
+              className="block h-[54px] w-full appearance-none bg-transparent px-4 py-3.5 text-white outline-none [color-scheme:dark]"
             />
           </div>
+
         </div>
+
       </div>
+
 
       {/* GUEST COUNT / EVENT TYPE */}
       <div className="grid gap-5 sm:grid-cols-2">
+
         <div className="min-w-0">
-          <label htmlFor="guestCount" className="mb-2 block text-sm text-stone-300">
+
+          <label className="mb-2 block text-sm text-stone-300">
             Guest Count
           </label>
+
           <input
-            id="guestCount"
             name="guestCount"
             type="number"
             min="1"
             value={form.guestCount}
             onChange={updateField}
             required
-            className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           />
+
         </div>
 
         <div className="min-w-0">
-          <label htmlFor="eventType" className="mb-2 block text-sm text-stone-300">
+
+          <label className="mb-2 block text-sm text-stone-300">
             Event Type
           </label>
 
           <div className="relative">
+
             <select
-              id="eventType"
               name="eventType"
               value={form.eventType}
               onChange={updateField}
@@ -192,47 +240,60 @@ export default function InquiryForm() {
             <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-stone-400">
               ▾
             </div>
+
           </div>
+
         </div>
+
       </div>
 
+
       {/* MESSAGE */}
-      <div className="min-w-0">
-        <label htmlFor="message" className="mb-2 block text-sm text-stone-300">
+      <div>
+
+        <label className="mb-2 block text-sm text-stone-300">
           Tell us about your event
         </label>
+
         <textarea
-          id="message"
           name="message"
           rows={5}
           value={form.message}
           onChange={updateField}
           required
-          className="w-full min-w-0 rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+          className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
           placeholder="Location, event details, menu interest, or anything else you'd like us to know."
         />
+
       </div>
+
 
       {/* SUBMIT */}
       <div className="pt-4 text-center">
+
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-full border border-white/40 px-10 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-full border border-white/40 px-10 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black disabled:opacity-50"
         >
           {isSubmitting ? "SENDING..." : "SEND INQUIRY"}
         </button>
+
       </div>
+
 
       {status.type && (
         <p
           className={`text-center text-sm ${
-            status.type === "success" ? "text-stone-300" : "text-red-400"
+            status.type === "success"
+              ? "text-stone-300"
+              : "text-red-400"
           }`}
         >
           {status.message}
         </p>
       )}
+
     </form>
   );
 }
