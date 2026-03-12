@@ -72,7 +72,7 @@ export default function HomePage() {
             />
 
             <p className="max-w-xl text-xl text-stone-300">
-              Japanese yakitori, grilled over binchotan charcoal and served fresh at your next event.
+              Japanese yakitori grilled over binchotan charcoal, served fresh at your next event.
             </p>
 
             <div className="flex gap-6">
@@ -100,14 +100,14 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl px-6 py-20 text-center">
 
             <h2 className="text-3xl font-semibold">
-              Yakitori Over Fire
+              Yakitori Over Fire 🍢🔥
             </h2>
 
             <div className="mx-auto mt-4 mb-8 h-px w-16 bg-white/20"></div>
 
             <p className="mx-auto max-w-xl leading-7 text-stone-300">
               San Bạn Yakitori is three friends with a shared passion for grilling
-              delicious yakitori over charcoal and bringing people together through food. 🍢🔥
+              delicious yakitori over charcoal and bringing people together through food. 
             </p>
 
             <p className="mx-auto mt-6 max-w-xl leading-7 text-stone-300">
@@ -123,7 +123,7 @@ export default function HomePage() {
         <section id="packages" className="border-t border-white/10 bg-black">
           <div className="mx-auto max-w-5xl px-6 py-20">
             <div className="mb-14 text-center">
-              <h2 className="text-3xl font-semibold">Catering Packages</h2>
+              <h2 className="text-3xl font-semibold">Packages</h2>
               <div className="mx-auto mt-4 h-px w-16 bg-white/20"></div>
             </div>
 
@@ -183,7 +183,7 @@ export default function HomePage() {
 
             <div className="mb-14 text-center">
               <h2 className="text-3xl font-semibold">
-                Yakitori Menu
+                Menu
               </h2>
 
               <div className="mx-auto mt-4 h-px w-16 bg-white/20"></div>
@@ -239,13 +239,13 @@ export default function HomePage() {
         <section id="contact" className="border-t border-white/10 bg-black">
           <div className="mx-auto max-w-4xl px-6 py-16 text-center">
 
-            <div className="mb-10">
-              <p className="text-lg text-stone-300">
+            <div className="mb-10 text-center">
+              <p className="text-lg font-medium text-white">
                 Interested in having San Ban Yakitori at your event?
               </p>
 
-              <p className="mt-1 text-lg text-stone-300">
-                Send us an inquiry below.
+              <p className="mt-2 text-sm text-stone-400">
+                Send us an inquiry and we’ll get back to you shortly.
               </p>
             </div>
 
