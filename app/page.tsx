@@ -1,65 +1,178 @@
+import Navbar from "./components/Navbar";
 import Image from "next/image";
+import { Instagram, Mail } from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
+  const menuA = [
+    "Negima (Chicken Thigh & Japanese Scallion)",
+    "Tsukune (Chicken Meatball)",
+    "Chicken Heart",
+    "Chicken Gizzard",
+    "Mushroom",
+    "Cherry Tomatoes",
+    "Shishito Peppers",
+  ];
+
+  const menuB = [
+    "Top Sirloin Beef Cubes",
+    "Pork Belly",
+    "Bacon-Wrapped Shishito Peppers",
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+      <Navbar />
+
+      <main className="min-h-screen bg-black text-white">
+
+        {/* HERO */}
+        <section className="border-b border-white/10">
+          <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-6 pt-16 pb-24 text-center">
+
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/logo.png"
+              alt="San Ban Yakitori"
+              width={260}
+              height={260}
+              className="object-contain mb-4"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+            <p className="max-w-xl text-lg text-stone-300">
+              Japanese charcoal-grilled yakitori for pop-ups, private events,
+              and catering.
+            </p>
+
+            <div className="flex gap-4">
+              <a
+                href="#menu"
+                className="rounded-full bg-white px-6 py-3 text-black transition hover:opacity-90"
+              >
+                View Menu
+              </a>
+
+              <a
+                href="#contact"
+                className="rounded-full border border-white/20 px-6 py-3 text-white transition hover:border-white"
+              >
+                Book an Event
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+
+        {/* ABOUT */}
+        <section className="mx-auto max-w-4xl px-6 py-20 text-center">
+          <h2 className="text-3xl font-semibold mb-6">
+            Yakitori. Fire. Simplicity.
+          </h2>
+
+          <p className="text-stone-300 leading-7">
+            San Ban Yakitori specializes in charcoal grilled Japanese skewers
+            served fresh off the grill. Perfect for private events, pop-ups,
+            parties, and intimate gatherings throughout Orange County.
+          </p>
+        </section>
+
+
+        {/* YAKITORI MENU */}
+        <section
+          id="menu"
+          className="border-t border-white/10 bg-white/5"
+        >
+          <div className="mx-auto max-w-3xl px-6 py-20">
+
+            <div className="text-center mb-14">
+              <h2 className="text-3xl font-semibold">
+                Yakitori Menu
+              </h2>
+            </div>
+
+
+            <div className="mx-auto max-w-xl space-y-12 text-left">
+
+              {/* MENU A */}
+              <div>
+                <h3 className="text-xl font-semibold tracking-wide mb-4">
+                  Menu A
+                </h3>
+
+                <div className="h-px w-12 bg-white/20 mb-6"></div>
+
+                <ul className="space-y-3 text-stone-300">
+                  {menuA.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="text-white">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+
+              {/* MENU B */}
+              <div>
+                <h3 className="text-xl font-semibold tracking-wide mb-4">
+                  Menu B
+                </h3>
+
+                <div className="h-px w-12 bg-white/20 mb-6"></div>
+
+                <ul className="space-y-3 text-stone-300">
+                  {menuB.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="text-white">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="border-t border-white/10"
+        >
+          <div className="mx-auto max-w-4xl px-6 py-20 text-center">
+
+            <h2 className="text-3xl font-semibold">
+              Book Sạn Ban Yakitori
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-xl text-stone-300">
+              Reach out to book catering, pop-ups, or private events.
+            </p>
+
+            <div className="mt-8 flex justify-center gap-4">
+
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              className="rounded-full border border-white/30 p-4 text-white transition hover:bg-white hover:text-black"
+            >
+              <Instagram size={20} />
+            </a>
+
+            <a
+              href="mailto:bookings@sanbanyakitori.com"
+              className="rounded-full border border-white/30 p-4 text-white transition hover:bg-white hover:text-black"
+            >
+              <Mail size={20} />
+            </a>
+
+          </div>
+
+          </div>
+        </section>
+
       </main>
-    </div>
+    </>
   );
 }
