@@ -1,18 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Instagram, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   function closeMenu() {
     setIsOpen(false);
   }
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/95 backdrop-blur">
+    <header
+      ref={menuRef}
+      className="sticky top-0 z-50 border-b border-white/10 bg-black/95 backdrop-blur"
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
         <a href="#" className="flex items-center gap-3" onClick={closeMenu}>
           <Image
@@ -62,7 +80,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
-            className="text-stone-300 transition hover:text-white md:hidden"
+            className="text-stone-300 transition hover:text-white active:scale-90 md:hidden"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
           >
@@ -71,33 +89,35 @@ export default function Navbar() {
         </div>
       </div>
 
-      {isOpen && (
-        <div className="border-t border-white/10 bg-black md:hidden">
-          <nav className="flex flex-col px-4 py-4 text-sm text-stone-300">
-            <a
-              href="#packages"
-              onClick={closeMenu}
-              className="py-3 transition hover:text-white"
-            >
-              Packages
-            </a>
-            <a
-              href="#menu"
-              onClick={closeMenu}
-              className="py-3 transition hover:text-white"
-            >
-              Menu
-            </a>
-            <a
-              href="#contact"
-              onClick={closeMenu}
-              className="py-3 transition hover:text-white"
-            >
-              Inquire
-            </a>
-          </nav>
-        </div>
-      )}
+      <div
+        className={`overflow-hidden border-t border-white/10 bg-black transition-all duration-300 md:hidden ${
+          isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="flex flex-col px-4 py-4 text-sm text-stone-300">
+          <a
+            href="#packages"
+            onClick={closeMenu}
+            className="rounded-md px-2 py-3 transition hover:bg-white/5 hover:text-white"
+          >
+            Packages
+          </a>
+          <a
+            href="#menu"
+            onClick={closeMenu}
+            className="rounded-md px-2 py-3 transition hover:bg-white/5 hover:text-white"
+          >
+            Menu
+          </a>
+          <a
+            href="#contact"
+            onClick={closeMenu}
+            className="rounded-md px-2 py-3 transition hover:bg-white/5 hover:text-white"
+          >
+            Inquire
+          </a>
+        </nav>
+      </div>
     </header>
   );
 }
