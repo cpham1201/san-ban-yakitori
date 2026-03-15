@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "San Ban Yakitori",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "San Ban Yakitori",
     description:
       "Japanese charcoal-grilled yakitori for pop-ups, private events, and catering.",
-    images: ["/og-image.png"],
+    images: ["/logo.png"],
   },
 };
 
