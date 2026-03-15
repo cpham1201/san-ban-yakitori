@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.png",
+        url: "https://sanbanyakitori.com/logo.png",
         width: 1200,
         height: 630,
         alt: "San Ban Yakitori",
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
     title: "San Ban Yakitori",
     description:
       "Japanese charcoal-grilled yakitori for pop-ups, private events, and catering.",
-    images: ["/logo.png"],
+    images: ["https://sanbanyakitori.com/logo.png"],
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body>{children}</body>
