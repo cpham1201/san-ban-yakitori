@@ -12,33 +12,16 @@ type SelectedItem = {
   image: string;
 };
 
+type MenuItem = {
+  name: string;
+  clickable?: boolean;
+  description?: string;
+  image?: string;
+};
+
 export default function HomePage() {
   const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  function closeModal() {
-    setSelectedItem(null);
-    setImageLoaded(false);
-  }
-
-  useEffect(() => {
-    if (!selectedItem) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeModal();
-      }
-    };
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [selectedItem]);
 
   const packages = [
     {
@@ -73,7 +56,7 @@ export default function HomePage() {
     },
   ];
 
-  const menuA = [
+  const menuA: MenuItem[] = [
     {
       name: "Negima (Chicken Thigh & Japanese Scallion)",
       clickable: true,
@@ -120,7 +103,7 @@ export default function HomePage() {
     },
   ];
 
-  const menuB = [
+  const menuB: MenuItem[] = [
     {
       name: "Top Sirloin Beef Cubes",
       clickable: true,
@@ -142,16 +125,12 @@ export default function HomePage() {
     },
   ];
 
-  const preloadImages = [
-    ...menuA.filter((item) => item.clickable && item.image).map((item) => item.image as string),
-    ...menuB.filter((item) => item.clickable && item.image).map((item) => item.image as string),
-  ].slice(0, 4);
+  function closeModal() {
+    setSelectedItem(null);
+    setImageLoaded(false);
+  }
 
-  function openMenuItem(item: {
-    name: string;
-    description?: string;
-    image?: string;
-  }) {
+  function openMenuItem(item: MenuItem) {
     if (!item.image) return;
 
     setImageLoaded(false);
@@ -162,24 +141,48 @@ export default function HomePage() {
     });
   }
 
+  useEffect(() => {
+    const imagesToPreload = [
+      ...menuA
+        .filter((item) => item.clickable && item.image)
+        .map((item) => item.image as string),
+      ...menuB
+        .filter((item) => item.clickable && item.image)
+        .map((item) => item.image as string),
+    ];
+
+    imagesToPreload.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!selectedItem) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedItem]);
+
   return (
     <>
       <Navbar />
 
       <main className="min-h-screen bg-black text-white">
-        <div className="hidden">
-          {preloadImages.map((src, index) => (
-            <Image
-              key={src}
-              src={src}
-              alt=""
-              width={1}
-              height={1}
-              priority={index < 3}
-            />
-          ))}
-        </div>
-
         {/* HERO */}
         <section className="border-b border-white/10 bg-black">
           <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 pb-24 pt-12 text-center">
@@ -251,7 +254,9 @@ export default function HomePage() {
 
                   <div className="mb-3 flex items-start justify-between gap-4">
                     <h3 className="text-lg font-semibold">{pkg.name}</h3>
-                    <span className="text-lg font-semibold text-white">{pkg.price}</span>
+                    <span className="text-lg font-semibold text-white">
+                      {pkg.price}
+                    </span>
                   </div>
 
                   <ul className="space-y-2 text-sm leading-6 text-stone-400">
@@ -270,7 +275,9 @@ export default function HomePage() {
 
                   <div className="mb-3 flex items-start justify-between gap-4">
                     <h3 className="text-lg font-semibold">{packages[4].name}</h3>
-                    <span className="text-lg font-semibold text-white">{packages[4].price}</span>
+                    <span className="text-lg font-semibold text-white">
+                      {packages[4].price}
+                    </span>
                   </div>
 
                   <ul className="space-y-2 text-sm leading-6 text-stone-400">
@@ -423,24 +430,26 @@ export default function HomePage() {
               <X size={18} />
             </button>
 
-            <div className="relative w-full overflow-hidden bg-black px-4 pb-4 pt-16 sm:px-6 sm:pb-6">
+            <div className="relative min-h-[320px] w-full overflow-hidden bg-black px-4 pb-4 pt-16 sm:min-h-[480px] sm:px-6 sm:pb-6">
               <div
-                className={`absolute inset-0 bg-white/[0.03] transition-opacity duration-300 ${
+                className={`absolute inset-0 bg-white/[0.03] transition-opacity duration-200 ${
                   imageLoaded ? "opacity-0" : "opacity-100"
                 }`}
               />
 
-              <Image
-                src={selectedItem.image}
-                alt={selectedItem.name}
-                width={900}
-                height={1200}
-                priority
-                className={`relative z-10 mx-auto h-auto max-h-[55svh] w-auto max-w-full rounded-xl object-contain transition-all duration-500 sm:max-h-[65svh] ${
-                  imageLoaded ? "scale-100 opacity-100" : "scale-[0.98] opacity-0"
-                }`}
-                onLoad={() => setImageLoaded(true)}
-              />
+              <div className="relative z-10 flex min-h-[280px] items-center justify-center sm:min-h-[420px]">
+                <Image
+                  src={selectedItem.image}
+                  alt={selectedItem.name}
+                  width={900}
+                  height={1200}
+                  priority
+                  className={`h-auto max-h-[55svh] w-auto max-w-full rounded-xl object-contain transition-all duration-300 sm:max-h-[65svh] ${
+                    imageLoaded ? "scale-100 opacity-100" : "scale-[0.985] opacity-0"
+                  }`}
+                  onLoad={() => setImageLoaded(true)}
+                />
+              </div>
             </div>
 
             <div className="border-t border-white/10 p-5 sm:p-6">
