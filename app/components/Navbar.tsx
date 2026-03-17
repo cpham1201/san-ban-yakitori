@@ -41,7 +41,7 @@ export default function Navbar() {
             className="h-7 w-7 object-contain"
           />
           <span className="text-xs font-semibold tracking-[0.18em] text-white sm:text-sm sm:tracking-widest">
-            SAN BAN YAKITORI
+            SAN BẠN YAKITORI
           </span>
         </a>
 
