@@ -99,7 +99,7 @@ export default function HomePage() {
       name: "Shishito Peppers",
       clickable: true,
       description: "Delicate shishito peppers grilled over binchotan.",
-      image: "/shishito-peppersv2.jpg",
+      image: "/shishito2.jpg",
     },
   ];
 
