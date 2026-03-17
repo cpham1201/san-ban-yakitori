@@ -155,8 +155,6 @@ export default function HomePage() {
       const img = new window.Image();
       img.src = src;
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -185,7 +183,7 @@ export default function HomePage() {
       <main className="min-h-screen bg-black text-white">
         {/* HERO */}
         <section className="border-b border-white/10 bg-black">
-          <div className="mx-auto flex max-w-6xl flex-col items-center px-6 pt-10 pb-24 text-center sm:pt-12 sm:pb-28">
+          <div className="mx-auto flex max-w-6xl flex-col items-center px-6 pt-10 pb-24 text-center sm:pt-4 sm:pb-28">
             <Image
               src="/logo2.png"
               alt="San Ban Yakitori"
@@ -220,21 +218,38 @@ export default function HomePage() {
 
         {/* ABOUT */}
         <section className="border-t border-white/10 bg-white/5">
-          <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-            <h2 className="text-3xl font-semibold">Yakitori Over Fire</h2>
-            <div className="mx-auto mb-8 mt-4 h-px w-16 bg-white/20"></div>
+          <div className="mx-auto max-w-5xl px-6 py-20">
+            <div className="mx-auto max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-black/40 shadow-2xl">
+              <div className="relative aspect-[4/3] w-full sm:aspect-[16/9]">
+                <Image
+                  src="/ban.jpg"
+                  alt="San Ban Yakitori team grilling over charcoal"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-black/30" />
+              </div>
+            </div>
 
-            <p className="mx-auto max-w-xl leading-7 text-stone-300">
-              San Bạn Yakitori is three friends with a shared passion for
-              grilling delicious yakitori over charcoal and bringing people
-              together through food.
-            </p>
+            <div className="mx-auto mt-12 max-w-3xl text-center">
+              <h2 className="text-3xl font-semibold sm:text-4xl">
+                Yakitori Over Fire
+              </h2>
+              <div className="mx-auto mb-8 mt-4 h-px w-16 bg-white/20"></div>
 
-            <p className="mx-auto mt-6 max-w-xl leading-7 text-stone-300">
-              We&apos;re a pop-up catering service serving the Orange County
-              area, perfect for private events, parties, and special
-              gatherings.
-            </p>
+              <p className="mx-auto max-w-2xl leading-8 text-stone-300">
+                San Bạn Yakitori is three friends with a shared passion for
+                grilling delicious yakitori over charcoal and bringing people
+                together through food.
+              </p>
+
+              <p className="mx-auto mt-6 max-w-2xl leading-8 text-stone-300">
+                We&apos;re a pop-up catering service serving the Orange County
+                area, perfect for private events, parties, and special
+                gatherings.
+              </p>
+            </div>
           </div>
         </section>
 
