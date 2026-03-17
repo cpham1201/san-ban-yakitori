@@ -370,7 +370,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-4xl px-6 py-16 text-center">
             <div className="mb-10 text-center">
               <p className="text-lg font-medium text-white">
-                Interested in having San Ban Yakitori at your event?
+                Interested in having San Bạn Yakitori at your event?
               </p>
 
               <p className="mt-2 text-sm text-stone-400">
