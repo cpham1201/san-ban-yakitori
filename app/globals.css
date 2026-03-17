@@ -35,3 +35,7 @@ input[type="date"]::-webkit-date-and-time-value {
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 1;
 }
+
+html {
+  scroll-behavior: smooth;
+}
