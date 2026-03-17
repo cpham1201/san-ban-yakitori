@@ -1,17 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Image from "next/image";
 import { Instagram, Mail, Phone, X } from "lucide-react";
 import InquiryForm from "./components/InquiryForm";
 
+type SelectedItem = {
+  name: string;
+  description: string;
+  image: string;
+};
+
 export default function HomePage() {
-  const [selectedItem, setSelectedItem] = useState<null | {
-    name: string;
-    description: string;
-    image: string;
-  }>(null);
+  const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  function closeModal() {
+    setSelectedItem(null);
+    setImageLoaded(false);
+  }
+
+  useEffect(() => {
+    if (!selectedItem) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedItem]);
 
   const packages = [
     {
@@ -54,54 +81,86 @@ export default function HomePage() {
         "Juicy chicken thigh and Japanese scallion grilled over binchotan.",
       image: "/negimav3.jpg",
     },
-    { name: "Tsukune (Chicken Meatball)", 
+    {
+      name: "Tsukune (Chicken Meatball)",
       clickable: true,
       description:
         "Hand-formed chicken meatball glazed with tare and grilled over binchotan.",
       image: "/tsukunev3.jpg",
     },
-    { name: "Chicken Heart", 
+    {
+      name: "Chicken Heart",
       clickable: true,
-      description:
-        "Tender chicken heart grilled over binchotan.",
+      description: "Tender chicken heart grilled over binchotan.",
       image: "/chickenheartsv2.jpg",
     },
-    { name: "Chicken Gizzard", 
+    {
+      name: "Chicken Gizzard",
       clickable: true,
-      description:
-        "Tender chicken gizzard grilled over binchotan.",
+      description: "Tender chicken gizzard grilled over binchotan.",
       image: "/chicken-gizzardv2.jpg",
     },
-    { name: "Mushroom", 
+    {
+      name: "Mushroom",
       clickable: true,
-      description:
-        "Fresh mushroom grilled over binchotan.",
+      description: "Fresh mushroom grilled over binchotan.",
       image: "/mushroomv2.jpg",
     },
-    { name: "Cherry Tomatoes", 
+    {
+      name: "Cherry Tomatoes",
       clickable: true,
-      description:
-        "Juicy cherry tomatoes grilled over binchotan.",
+      description: "Juicy cherry tomatoes grilled over binchotan.",
       image: "/cherry-tomatoesv2.jpg",
     },
-    { name: "Shishito Peppers", 
+    {
+      name: "Shishito Peppers",
       clickable: true,
-      description:
-        "Delicate shishito peppers grilled over binchotan.",
+      description: "Delicate shishito peppers grilled over binchotan.",
       image: "/shishito-peppersv2.jpg",
     },
   ];
 
   const menuB = [
-    { name: "Top Sirloin Beef Cubes", clickable: true, description: "Tender top sirloin beef cubes grilled over binchotan.", image: "/beef-cubesv2.jpg" },
-    { name: "Pork Belly", clickable: true, description: "Tender pork belly grilled over binchotan.", image: "/pork-bellyv2.jpg" },
-    { name: "Bacon-Wrapped Shishito Peppers", clickable: true, description: "Delicate shishito peppers wrapped in bacon and grilled over binchotan.", image: "/bacon-wrapped-shishito-peppersv2.jpg" },
+    {
+      name: "Top Sirloin Beef Cubes",
+      clickable: true,
+      description: "Tender top sirloin beef cubes grilled over binchotan.",
+      image: "/beef-cubesv2.jpg",
+    },
+    {
+      name: "Pork Belly",
+      clickable: true,
+      description: "Tender pork belly grilled over binchotan.",
+      image: "/pork-bellyv2.jpg",
+    },
+    {
+      name: "Bacon-Wrapped Shishito Peppers",
+      clickable: true,
+      description:
+        "Delicate shishito peppers wrapped in bacon and grilled over binchotan.",
+      image: "/bacon-wrapped-shishito-peppersv2.jpg",
+    },
   ];
 
   const preloadImages = [
-    ...menuA.filter((item) => item.clickable).map((item) => item.image),
-    ...menuB.filter((item) => item.clickable).map((item) => item.image),
-  ];
+    ...menuA.filter((item) => item.clickable && item.image).map((item) => item.image as string),
+    ...menuB.filter((item) => item.clickable && item.image).map((item) => item.image as string),
+  ].slice(0, 4);
+
+  function openMenuItem(item: {
+    name: string;
+    description?: string;
+    image?: string;
+  }) {
+    if (!item.image) return;
+
+    setImageLoaded(false);
+    setSelectedItem({
+      name: item.name,
+      description: item.description || "",
+      image: item.image,
+    });
+  }
 
   return (
     <>
@@ -109,8 +168,15 @@ export default function HomePage() {
 
       <main className="min-h-screen bg-black text-white">
         <div className="hidden">
-          {preloadImages.map((src) => (
-            <Image key={src} src={src} alt="" width={1} height={1} priority />
+          {preloadImages.map((src, index) => (
+            <Image
+              key={src}
+              src={src}
+              alt=""
+              width={1}
+              height={1}
+              priority={index < 3}
+            />
           ))}
         </div>
 
@@ -123,10 +189,12 @@ export default function HomePage() {
               width={260}
               height={260}
               className="mb-2 object-contain"
+              priority
             />
 
             <p className="max-w-xl text-xl text-stone-300">
-              Japanese yakitori grilled over binchotan charcoal, served fresh at your next event.
+              Japanese yakitori grilled over binchotan charcoal, served fresh at
+              your next event.
             </p>
 
             <div className="flex w-full max-w-sm flex-col gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:gap-6">
@@ -239,13 +307,7 @@ export default function HomePage() {
                       {item.clickable ? (
                         <button
                           type="button"
-                          onClick={() =>
-                            setSelectedItem({
-                              name: item.name,
-                              description: item.description || "",
-                              image: item.image || "",
-                            })
-                          }
+                          onClick={() => openMenuItem(item)}
                           className="group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.98] active:bg-white/[0.06]"
                         >
                           <span className="text-white">•</span>
@@ -274,13 +336,7 @@ export default function HomePage() {
                       {item.clickable ? (
                         <button
                           type="button"
-                          onClick={() =>
-                            setSelectedItem({
-                              name: item.name,
-                              description: item.description || "",
-                              image: item.image || "",
-                            })
-                          }
+                          onClick={() => openMenuItem(item)}
                           className="group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.98] active:bg-white/[0.06]"
                         >
                           <span className="text-white">•</span>
@@ -351,36 +407,49 @@ export default function HomePage() {
       {/* MODAL */}
       {selectedItem && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm"
-          onClick={() => setSelectedItem(null)}
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/85 px-3 py-3 backdrop-blur-md sm:px-4 sm:py-6"
+          onClick={closeModal}
         >
           <div
-            className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-black shadow-2xl"
+            className="relative w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl sm:rounded-3xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               type="button"
-              onClick={() => setSelectedItem(null)}
-              className="absolute right-4 top-4 z-10 rounded-full border border-white/15 bg-black/60 p-2 text-white transition hover:bg-white hover:text-black"
+              onClick={closeModal}
+              className="absolute right-4 top-4 z-20 rounded-full border border-white/15 bg-black/60 p-2 text-white transition hover:bg-white hover:text-black"
               aria-label="Close"
             >
               <X size={18} />
             </button>
 
-            <div className="relative w-full bg-black">
+            <div className="relative w-full overflow-hidden bg-black px-4 pb-4 pt-16 sm:px-6 sm:pb-6">
+              <div
+                className={`absolute inset-0 bg-white/[0.03] transition-opacity duration-300 ${
+                  imageLoaded ? "opacity-0" : "opacity-100"
+                }`}
+              />
+
               <Image
                 src={selectedItem.image}
                 alt={selectedItem.name}
-                width={800}
-                height={1000}
-                className="mx-auto h-auto max-h-[70vh] w-full object-contain"
+                width={900}
+                height={1200}
                 priority
+                className={`relative z-10 mx-auto h-auto max-h-[55svh] w-auto max-w-full rounded-xl object-contain transition-all duration-500 sm:max-h-[65svh] ${
+                  imageLoaded ? "scale-100 opacity-100" : "scale-[0.98] opacity-0"
+                }`}
+                onLoad={() => setImageLoaded(true)}
               />
             </div>
 
-            <div className="border-t border-white/10 p-6">
-              <h3 className="text-xl font-semibold text-white">{selectedItem.name}</h3>
-              <p className="mt-3 leading-7 text-stone-300">{selectedItem.description}</p>
+            <div className="border-t border-white/10 p-5 sm:p-6">
+              <h3 className="text-lg font-semibold text-white sm:text-xl">
+                {selectedItem.name}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-stone-300 sm:text-base sm:leading-7">
+                {selectedItem.description}
+              </p>
             </div>
           </div>
         </div>
