@@ -52,50 +52,50 @@ export default function HomePage() {
       clickable: true,
       description:
         "Juicy chicken thigh and Japanese scallion grilled over binchotan.",
-      image: "/negimav2.jpg",
+      image: "/negimav3.jpg",
     },
     { name: "Tsukune (Chicken Meatball)", 
       clickable: true,
       description:
         "Hand-formed chicken meatball glazed with tare and grilled over binchotan.",
-      image: "/tsukunev2.jpg",
+      image: "/tsukunev3.jpg",
     },
     { name: "Chicken Heart", 
       clickable: true,
       description:
         "Tender chicken heart grilled over binchotan.",
-      image: "/chickenheart.jpg",
+      image: "/chickenheartsv2.jpg",
     },
     { name: "Chicken Gizzard", 
       clickable: true,
       description:
         "Tender chicken gizzard grilled over binchotan.",
-      image: "/chicken-gizzard.jpg",
+      image: "/chicken-gizzardv2.jpg",
     },
     { name: "Mushroom", 
       clickable: true,
       description:
         "Fresh mushroom grilled over binchotan.",
-      image: "/mushroom.jpg",
+      image: "/mushroomv2.jpg",
     },
     { name: "Cherry Tomatoes", 
       clickable: true,
       description:
         "Juicy cherry tomatoes grilled over binchotan.",
-      image: "/cherry-tomatoes.jpg",
+      image: "/cherry-tomatoesv2.jpg",
     },
     { name: "Shishito Peppers", 
       clickable: true,
       description:
         "Delicate shishito peppers grilled over binchotan.",
-      image: "/shishito-peppers.jpg",
+      image: "/shishito-peppersv2.jpg",
     },
   ];
 
   const menuB = [
-    { name: "Top Sirloin Beef Cubes", clickable: true, description: "Tender top sirloin beef cubes grilled over binchotan.", image: "/beef-cubes.jpg" },
-    { name: "Pork Belly", clickable: true, description: "Tender pork belly grilled over binchotan.", image: "/pork-belly.jpg" },
-    { name: "Bacon-Wrapped Shishito Peppers", clickable: true, description: "Delicate shishito peppers wrapped in bacon and grilled over binchotan.", image: "/bacon-wrapped-shishito-peppers.jpg" },
+    { name: "Top Sirloin Beef Cubes", clickable: true, description: "Tender top sirloin beef cubes grilled over binchotan.", image: "/beef-cubesv2.jpg" },
+    { name: "Pork Belly", clickable: true, description: "Tender pork belly grilled over binchotan.", image: "/pork-bellyv2.jpg" },
+    { name: "Bacon-Wrapped Shishito Peppers", clickable: true, description: "Delicate shishito peppers wrapped in bacon and grilled over binchotan.", image: "/bacon-wrapped-shishito-peppersv2.jpg" },
   ];
 
   const preloadImages = [
