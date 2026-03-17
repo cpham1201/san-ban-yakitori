@@ -226,7 +226,7 @@ export default function HomePage() {
 
             <p className="mx-auto max-w-xl leading-7 text-stone-300">
               San Bạn Yakitori is three friends with a shared passion for grilling delicious
-              yakitori over charcoal and bringing people together through food. 🍢🔥
+              yakitori over charcoal and bringing people together through food.
             </p>
 
             <p className="mx-auto mt-6 max-w-xl leading-7 text-stone-300">
