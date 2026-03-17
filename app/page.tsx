@@ -51,21 +51,56 @@ export default function HomePage() {
       name: "Negima (Chicken Thigh & Japanese Scallion)",
       clickable: true,
       description:
-        "Juicy chicken thigh and Japanese scallion grilled over charcoal.",
-      image: "/negima.jpg",
+        "Juicy chicken thigh and Japanese scallion grilled over binchotan.",
+      image: "/negimav2.jpg",
     },
-    { name: "Tsukune (Chicken Meatball)", clickable: false },
-    { name: "Chicken Heart", clickable: false },
-    { name: "Chicken Gizzard", clickable: false },
-    { name: "Mushroom", clickable: false },
-    { name: "Cherry Tomatoes", clickable: false },
-    { name: "Shishito Peppers", clickable: false },
+    { name: "Tsukune (Chicken Meatball)", 
+      clickable: true,
+      description:
+        "Hand-formed chicken meatball glazed with tare and grilled over binchotan.",
+      image: "/tsukunev2.jpg",
+    },
+    { name: "Chicken Heart", 
+      clickable: true,
+      description:
+        "Tender chicken heart grilled over binchotan.",
+      image: "/chickenheart.jpg",
+    },
+    { name: "Chicken Gizzard", 
+      clickable: true,
+      description:
+        "Tender chicken gizzard grilled over binchotan.",
+      image: "/chicken-gizzard.jpg",
+    },
+    { name: "Mushroom", 
+      clickable: true,
+      description:
+        "Fresh mushroom grilled over binchotan.",
+      image: "/mushroom.jpg",
+    },
+    { name: "Cherry Tomatoes", 
+      clickable: true,
+      description:
+        "Juicy cherry tomatoes grilled over binchotan.",
+      image: "/cherry-tomatoes.jpg",
+    },
+    { name: "Shishito Peppers", 
+      clickable: true,
+      description:
+        "Delicate shishito peppers grilled over binchotan.",
+      image: "/shishito-peppers.jpg",
+    },
   ];
 
   const menuB = [
-    { name: "Top Sirloin Beef Cubes" },
-    { name: "Pork Belly" },
-    { name: "Bacon-Wrapped Shishito Peppers" },
+    { name: "Top Sirloin Beef Cubes", clickable: true, description: "Tender top sirloin beef cubes grilled over binchotan.", image: "/beef-cubes.jpg" },
+    { name: "Pork Belly", clickable: true, description: "Tender pork belly grilled over binchotan.", image: "/pork-belly.jpg" },
+    { name: "Bacon-Wrapped Shishito Peppers", clickable: true, description: "Delicate shishito peppers wrapped in bacon and grilled over binchotan.", image: "/bacon-wrapped-shishito-peppers.jpg" },
+  ];
+
+  const preloadImages = [
+    ...menuA.filter((item) => item.clickable).map((item) => item.image),
+    ...menuB.filter((item) => item.clickable).map((item) => item.image),
   ];
 
   return (
@@ -73,6 +108,12 @@ export default function HomePage() {
       <Navbar />
 
       <main className="min-h-screen bg-black text-white">
+        <div className="hidden">
+          {preloadImages.map((src) => (
+            <Image key={src} src={src} alt="" width={1} height={1} priority />
+          ))}
+        </div>
+
         {/* HERO */}
         <section className="border-b border-white/10 bg-black">
           <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 pb-24 pt-12 text-center">
@@ -205,7 +246,7 @@ export default function HomePage() {
                               image: item.image || "",
                             })
                           }
-                          className="group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-left transition-all duration-150 active:scale-[0.98] active:bg-white/[0.06] hover:bg-white/[0.04]"
+                          className="group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.98] active:bg-white/[0.06]"
                         >
                           <span className="text-white">•</span>
                           <span className="transition group-hover:translate-x-1">
@@ -229,9 +270,30 @@ export default function HomePage() {
 
                 <ul className="space-y-3 text-stone-300">
                   {menuB.map((item) => (
-                    <li key={item.name} className="flex gap-2">
-                      <span className="text-white">•</span>
-                      <span>{item.name}</span>
+                    <li key={item.name}>
+                      {item.clickable ? (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setSelectedItem({
+                              name: item.name,
+                              description: item.description || "",
+                              image: item.image || "",
+                            })
+                          }
+                          className="group flex w-full cursor-pointer items-center gap-2 rounded-md px-2 py-2 text-left transition-all duration-150 hover:bg-white/[0.04] active:scale-[0.98] active:bg-white/[0.06]"
+                        >
+                          <span className="text-white">•</span>
+                          <span className="transition group-hover:translate-x-1">
+                            {item.name}
+                          </span>
+                        </button>
+                      ) : (
+                        <div className="flex gap-2 px-1 py-1">
+                          <span className="text-white">•</span>
+                          <span>{item.name}</span>
+                        </div>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -305,12 +367,14 @@ export default function HomePage() {
               <X size={18} />
             </button>
 
-            <div className="relative aspect-[4/5] w-full sm:aspect-[16/10]">
+            <div className="relative w-full bg-black">
               <Image
                 src={selectedItem.image}
                 alt={selectedItem.name}
-                fill
-                className="object-cover"
+                width={800}
+                height={1000}
+                className="mx-auto h-auto max-h-[70vh] w-full object-contain"
+                priority
               />
             </div>
 
