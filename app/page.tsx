@@ -185,22 +185,22 @@ export default function HomePage() {
       <main className="min-h-screen bg-black text-white">
         {/* HERO */}
         <section className="border-b border-white/10 bg-black">
-          <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 pb-24 pt-12 text-center">
+          <div className="mx-auto flex max-w-6xl flex-col items-center px-6 pt-10 pb-24 text-center sm:pt-12 sm:pb-28">
             <Image
-              src="/logo.png"
+              src="/logo2.png"
               alt="San Ban Yakitori"
-              width={260}
-              height={260}
-              className="mb-2 object-contain"
+              width={190}
+              height={190}
+              className="object-contain"
               priority
             />
 
-            <p className="max-w-xl text-xl text-stone-300">
+            <p className="mt-8 max-w-2xl text-xl leading-relaxed text-stone-300 sm:mt-10 sm:text-2xl">
               Japanese yakitori grilled over binchotan charcoal, served fresh at
               your next event.
             </p>
 
-            <div className="flex w-full max-w-sm flex-col gap-4 sm:w-auto sm:max-w-none sm:flex-row sm:gap-6">
+            <div className="mt-8 flex w-full max-w-sm flex-col gap-4 sm:mt-10 sm:w-auto sm:max-w-none sm:flex-row sm:gap-6">
               <a
                 href="#menu"
                 className="rounded-full border border-white/40 px-10 py-3 text-center text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black"
@@ -225,13 +225,15 @@ export default function HomePage() {
             <div className="mx-auto mb-8 mt-4 h-px w-16 bg-white/20"></div>
 
             <p className="mx-auto max-w-xl leading-7 text-stone-300">
-              San Bạn Yakitori is three friends with a shared passion for grilling delicious
-              yakitori over charcoal and bringing people together through food.
+              San Bạn Yakitori is three friends with a shared passion for
+              grilling delicious yakitori over charcoal and bringing people
+              together through food.
             </p>
 
             <p className="mx-auto mt-6 max-w-xl leading-7 text-stone-300">
-              We&apos;re a pop-up catering service serving the Orange County area, perfect for
-              private events, parties, and special gatherings.
+              We&apos;re a pop-up catering service serving the Orange County
+              area, perfect for private events, parties, and special
+              gatherings.
             </p>
           </div>
         </section>
@@ -305,7 +307,9 @@ export default function HomePage() {
 
             <div className="mx-auto max-w-xl space-y-12 text-left">
               <div>
-                <h3 className="mb-4 text-xl font-semibold tracking-wide">Menu A</h3>
+                <h3 className="mb-4 text-xl font-semibold tracking-wide">
+                  Menu A
+                </h3>
                 <div className="mb-6 h-px w-12 bg-white/20"></div>
 
                 <ul className="space-y-3 text-stone-300">
@@ -334,7 +338,9 @@ export default function HomePage() {
               </div>
 
               <div>
-                <h3 className="mb-4 text-xl font-semibold tracking-wide">Menu B</h3>
+                <h3 className="mb-4 text-xl font-semibold tracking-wide">
+                  Menu B
+                </h3>
                 <div className="mb-6 h-px w-12 bg-white/20"></div>
 
                 <ul className="space-y-3 text-stone-300">
@@ -445,7 +451,9 @@ export default function HomePage() {
                   height={1200}
                   priority
                   className={`h-auto max-h-[55svh] w-auto max-w-full rounded-xl object-contain transition-all duration-300 sm:max-h-[65svh] ${
-                    imageLoaded ? "scale-100 opacity-100" : "scale-[0.985] opacity-0"
+                    imageLoaded
+                      ? "scale-100 opacity-100"
+                      : "scale-[0.985] opacity-0"
                   }`}
                   onLoad={() => setImageLoaded(true)}
                 />
