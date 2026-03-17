@@ -85,7 +85,7 @@ export default function InquiryForm() {
 
       setStatus({
         type: "success",
-        message: "Inquiry sent. We’ll get back to you soon.",
+        message: "Thank you for your interest in San Bạn Yakitori. We’ve received your inquiry and will get back to you shortly.",
       });
 
       setForm({
