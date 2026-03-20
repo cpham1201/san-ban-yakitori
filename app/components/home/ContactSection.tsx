@@ -3,7 +3,7 @@ import InquiryForm from "../InquiryForm";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="border-t border-white/10 bg-black">
+    <section id="contact" className="scroll-mt-14 border-t border-white/10 bg-black">
       <div className="mx-auto max-w-4xl px-6 py-16 text-center">
         <div className="mb-10 text-center">
           <p className="text-lg font-medium text-white">

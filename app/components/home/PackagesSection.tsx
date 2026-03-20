@@ -2,7 +2,7 @@ import { packages } from "@/app/data/menu";
 
 export default function PackagesSection() {
   return (
-    <section id="packages" className="border-t border-white/10 bg-black">
+    <section id="packages" className="scroll-mt-14 border-t border-white/10 bg-black">
       <div className="mx-auto max-w-5xl px-6 py-20">
         <div className="mb-14 text-center">
           <h2 className="text-3xl font-semibold">Catering Packages</h2>

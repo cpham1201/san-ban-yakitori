@@ -12,6 +12,21 @@ export default function Navbar() {
     setIsOpen(false);
   }
 
+  function handleNavClick(sectionId: string) {
+    setIsOpen(false);
+
+    // wait for menu animation to finish before scrolling
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 200); // tweak if needed
+  }
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -20,7 +35,6 @@ export default function Navbar() {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -46,6 +60,7 @@ export default function Navbar() {
         </a>
 
         <div className="flex items-center gap-4">
+          {/* Desktop Nav */}
           <nav className="hidden items-center gap-8 text-sm text-stone-300 md:flex">
             <a href="#packages" className="transition hover:text-white">
               Packages
@@ -67,6 +82,7 @@ export default function Navbar() {
             </a>
           </nav>
 
+          {/* Mobile Instagram */}
           <a
             href="https://instagram.com/sanbanyakitori"
             target="_blank"
@@ -77,6 +93,7 @@ export default function Navbar() {
             <Instagram size={20} />
           </a>
 
+          {/* Hamburger */}
           <button
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
@@ -89,33 +106,31 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <div
         className={`overflow-hidden border-t border-white/10 bg-black transition-all duration-300 md:hidden ${
           isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <nav className="flex flex-col px-4 py-4 text-sm text-stone-300">
-          <a
-            href="#packages"
-            onClick={closeMenu}
-            className="rounded-md px-2 py-3 transition hover:bg-white/5 hover:text-white"
+          <button
+            onClick={() => handleNavClick("packages")}
+            className="rounded-md px-2 py-3 text-left transition hover:bg-white/5 hover:text-white"
           >
             Packages
-          </a>
-          <a
-            href="#menu"
-            onClick={closeMenu}
-            className="rounded-md px-2 py-3 transition hover:bg-white/5 hover:text-white"
+          </button>
+          <button
+            onClick={() => handleNavClick("menu")}
+            className="rounded-md px-2 py-3 text-left transition hover:bg-white/5 hover:text-white"
           >
             Menu
-          </a>
-          <a
-            href="#contact"
-            onClick={closeMenu}
-            className="rounded-md px-2 py-3 transition hover:bg-white/5 hover:text-white"
+          </button>
+          <button
+            onClick={() => handleNavClick("contact")}
+            className="rounded-md px-2 py-3 text-left transition hover:bg-white/5 hover:text-white"
           >
             Inquire
-          </a>
+          </button>
         </nav>
       </div>
     </header>

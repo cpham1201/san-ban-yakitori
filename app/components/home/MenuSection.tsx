@@ -6,7 +6,7 @@ type MenuSectionProps = {
 
 export default function MenuSection({ onSelectItem }: MenuSectionProps) {
   return (
-    <section id="menu" className="border-t border-white/10 bg-white/5">
+    <section id="menu" className="scroll-mt-14 border-t border-white/10 bg-white/5">
       <div className="mx-auto max-w-3xl px-6 py-20">
         <div className="mb-14 text-center">
           <h2 className="text-3xl font-semibold">Yakitori Menu</h2>
