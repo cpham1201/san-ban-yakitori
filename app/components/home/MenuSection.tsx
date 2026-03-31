@@ -3,51 +3,24 @@
 import Image from "next/image";
 import { menuA, menuB, type MenuItem } from "@/app/data/menu";
 
-type MenuSectionProps = {
-  onSelectItem: (item: MenuItem) => void;
-};
-
 type MenuCardProps = {
   item: MenuItem;
-  onSelectItem: (item: MenuItem) => void;
 };
 
-function MenuCard({ item, onSelectItem }: MenuCardProps) {
-  const isClickable = Boolean(item.image);
-
+function MenuCard({ item }: MenuCardProps) {
   return (
-    <button
-      type="button"
-      onClick={() => {
-        if (isClickable) onSelectItem(item);
-      }}
-      disabled={!isClickable}
-      className={`group block w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left transition-all duration-300 ${
-        isClickable
-          ? "cursor-pointer hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] active:scale-[0.98]"
-          : "cursor-default"
-      }`}
-      aria-label={isClickable ? `View ${item.name}` : item.name}
-    >
+    <div className="w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
       <div className="relative aspect-[3/4] overflow-hidden bg-black">
         {item.image ? (
           <Image
             src={item.image}
             alt={item.name}
             fill
-            className="object-contain p-2 transition-transform duration-300 group-hover:scale-[1.03]"
+            className="object-contain p-2"
           />
         ) : (
           <div className="flex h-full items-center justify-center text-sm text-stone-500">
             No image
-          </div>
-        )}
-
-        {isClickable && (
-          <div className="absolute bottom-2 right-2 md:hidden">
-            <span className="rounded-full border border-white/15 bg-black/70 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-white backdrop-blur-sm">
-              View
-            </span>
           </div>
         )}
       </div>
@@ -57,31 +30,21 @@ function MenuCard({ item, onSelectItem }: MenuCardProps) {
           {item.name}
         </h3>
       </div>
-    </button>
+    </div>
   );
 }
 
-function MenuGrid({
-  items,
-  onSelectItem,
-}: {
-  items: MenuItem[];
-  onSelectItem: (item: MenuItem) => void;
-}) {
+function MenuGrid({ items }: { items: MenuItem[] }) {
   return (
     <div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-4">
       {items.map((item) => (
-        <MenuCard
-          key={item.name}
-          item={item}
-          onSelectItem={onSelectItem}
-        />
+        <MenuCard key={item.name} item={item} />
       ))}
     </div>
   );
 }
 
-export default function MenuSection({ onSelectItem }: MenuSectionProps) {
+export default function MenuSection() {
   return (
     <section
       id="menu"
@@ -89,7 +52,7 @@ export default function MenuSection({ onSelectItem }: MenuSectionProps) {
     >
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="mb-10 text-center">
-          <h2 className="text-3xl font-semibold">Menu</h2>
+          <h2 className="text-3xl font-semibold text-white">Menu</h2>
           <div className="mx-auto mt-4 h-px w-16 bg-white/20" />
         </div>
 
@@ -98,16 +61,14 @@ export default function MenuSection({ onSelectItem }: MenuSectionProps) {
             <div className="mb-4">
               <h3 className="text-xl font-semibold text-white">Menu A</h3>
             </div>
-
-            <MenuGrid items={menuA} onSelectItem={onSelectItem} />
+            <MenuGrid items={menuA} />
           </div>
 
           <div>
             <div className="mb-4">
               <h3 className="text-xl font-semibold text-white">Menu B</h3>
             </div>
-
-            <MenuGrid items={menuB} onSelectItem={onSelectItem} />
+            <MenuGrid items={menuB} />
           </div>
         </div>
       </div>

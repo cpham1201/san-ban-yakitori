@@ -13,7 +13,6 @@ export type MenuItem = {
 
 export type PackageItem = {
   name: string;
-  price: string;
   skewers: string;
   time: string;
 };
@@ -21,31 +20,26 @@ export type PackageItem = {
 export const packages: PackageItem[] = [
   {
     name: "Package A",
-    price: "$1,100",
     skewers: "200 skewers",
     time: "2 hours of live grilling service",
   },
   {
     name: "Package B",
-    price: "$1,600",
     skewers: "300 skewers",
     time: "2 hours of live grilling service",
   },
   {
     name: "Package C",
-    price: "$2,100",
     skewers: "500 skewers",
     time: "2–3 hours of live grilling service",
   },
   {
     name: "Package D",
-    price: "$2,600",
     skewers: "700 skewers",
     time: "2–3 hours of live grilling service",
   },
   {
     name: "Package E",
-    price: "$3,600",
     skewers: "1000 skewers",
     time: "3+ hours of live grilling service",
   },

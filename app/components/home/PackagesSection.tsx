@@ -19,9 +19,6 @@ export default function PackagesSection() {
 
               <div className="mb-3 flex items-start justify-between gap-4">
                 <h3 className="text-lg font-semibold">{pkg.name}</h3>
-                <span className="text-lg font-semibold text-white">
-                  {pkg.price}
-                </span>
               </div>
 
               <ul className="space-y-2 text-sm leading-6 text-stone-400">
@@ -40,9 +37,6 @@ export default function PackagesSection() {
 
               <div className="mb-3 flex items-start justify-between gap-4">
                 <h3 className="text-lg font-semibold">{packages[4].name}</h3>
-                <span className="text-lg font-semibold text-white">
-                  {packages[4].price}
-                </span>
               </div>
 
               <ul className="space-y-2 text-sm leading-6 text-stone-400">
@@ -55,7 +49,7 @@ export default function PackagesSection() {
         </div>
 
         <p className="mt-10 text-center text-sm text-stone-400">
-          Guests choose 70% of skewers from Menu A and 30% from Menu B.
+          Please inquire for pricing and menu details.
         </p>
       </div>
     </section>

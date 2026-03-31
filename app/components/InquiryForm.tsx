@@ -198,13 +198,13 @@ export default function InquiryForm() {
         <div className="min-w-0">
 
           <label className="mb-2 block text-sm text-stone-300">
-            Guest Count
+            Estimated Guest Count
           </label>
 
           <input
             name="guestCount"
-            type="number"
-            min="1"
+            type="text"
+            placeholder="e.g. 30–40 guests"
             value={form.guestCount}
             onChange={updateField}
             required
