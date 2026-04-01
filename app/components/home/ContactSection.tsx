@@ -3,14 +3,19 @@ import InquiryForm from "../InquiryForm";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="scroll-mt-14 border-b border-white/10 bg-[#0a0a0a]">
+    <section
+      id="contact"
+      className="scroll-mt-14 border-b border-white/10 bg-[#0a0a0a]"
+    >
       <div className="mx-auto max-w-4xl px-6 py-16 text-center">
-        <div className="mb-10 text-center">
-          <p className="text-lg font-medium text-white">
-            Interested in having San Bạn Yakitori at your event?
+        <div className="mb-10">
+          <p className="px-2 text-[1rem] leading-snug text-white sm:px-0 sm:text-lg">
+            <span className="whitespace-nowrap">
+              Interested in having San Bạn Yakitori at your event?
+            </span>
           </p>
 
-          <p className="mt-2 text-sm text-stone-300">
+          <p className="mt-3 text-sm text-stone-300">
             Send us an inquiry and we&apos;ll get back to you shortly.
           </p>
         </div>
