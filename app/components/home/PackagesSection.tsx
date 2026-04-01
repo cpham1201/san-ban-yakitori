@@ -2,7 +2,7 @@ import { packages } from "@/app/data/menu";
 
 export default function PackagesSection() {
   return (
-    <section id="packages" className="scroll-mt-14 border-t border-white/10 bg-black">
+    <section id="packages" className="scroll-mt-14 border-b border-white/10 bg-[#0a0a0a]">
       <div className="mx-auto max-w-5xl px-6 py-20">
         <div className="mb-14 text-center">
           <h2 className="text-3xl font-semibold">Catering Packages</h2>
@@ -48,7 +48,7 @@ export default function PackagesSection() {
           </div>
         </div>
 
-        <p className="mt-10 text-center text-sm text-stone-400">
+        <p className="mt-10 text-center text-sm text-stone-300">
           Please inquire for pricing and menu details.
         </p>
       </div>

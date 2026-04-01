@@ -8,15 +8,6 @@ body {
   margin: 0;
   background: #0c0a09;
   color: #f5f5f4;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-input[type="date"] {
-  width: 100%;
 }
 
 input[type="date"] {
@@ -34,8 +25,4 @@ input[type="date"]::-webkit-date-and-time-value {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 1;
-}
-
-html {
-  scroll-behavior: smooth;
 }

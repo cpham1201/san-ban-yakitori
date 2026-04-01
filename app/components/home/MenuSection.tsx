@@ -48,7 +48,7 @@ export default function MenuSection() {
   return (
     <section
       id="menu"
-      className="scroll-mt-20 border-t border-white/10 bg-black"
+      className="scroll-mt-20 border-t border-white/10 bg-white/5"
     >
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="mb-10 text-center">
