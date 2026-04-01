@@ -30,8 +30,8 @@ export default function AboutSection() {
           </p>
 
           <p className="mx-auto mt-6 max-w-2xl leading-8 text-stone-300">
-            We&apos;re a pop-up catering service serving the Orange County area,
-            perfect for private events, parties, and special gatherings.
+            We&apos;re a pop-up catering service serving Orange County and surrounding areas,
+            offering authentic yakitori to private events, parties, and special gatherings.
           </p>
         </div>
       </div>
