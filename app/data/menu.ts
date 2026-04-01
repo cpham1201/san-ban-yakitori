@@ -47,14 +47,14 @@ export const packages: PackageItem[] = [
 
 export const menuA: MenuItem[] = [
   {
-    name: "Negima (Chicken Thigh & Japanese Scallion)",
+    name: "Negima",
     clickable: true,
     description:
       "Juicy chicken thigh and Japanese scallion grilled over binchotan.",
     image: "/negimav3.jpg",
   },
   {
-    name: "Tsukune (Chicken Meatball)",
+    name: "Tsukune",
     clickable: true,
     description:
       "Hand-formed chicken meatball glazed with tare and grilled over binchotan.",
