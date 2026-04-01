@@ -18,7 +18,7 @@ export default function AboutSection() {
         </div>
 
         <div className="mx-auto mt-12 max-w-3xl text-center">
-          <h2 className="text-3xl font-semibold sm:text-4xl">
+          <h2 className="text-3xl font-semibold text-white">
             Yakitori Over Fire
           </h2>
           <div className="mx-auto mb-8 mt-4 h-px w-16 bg-white/20"></div>

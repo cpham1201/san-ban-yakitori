@@ -5,7 +5,7 @@ export default function PackagesSection() {
     <section id="packages" className="scroll-mt-14 border-b border-white/10 bg-[#0a0a0a]">
       <div className="mx-auto max-w-5xl px-6 py-20">
         <div className="mb-14 text-center">
-          <h2 className="text-3xl font-semibold">Catering Packages</h2>
+          <h2 className="text-3xl font-semibold text-white">Packages</h2>
           <div className="mx-auto mt-4 h-px w-16 bg-white/20"></div>
         </div>
 
