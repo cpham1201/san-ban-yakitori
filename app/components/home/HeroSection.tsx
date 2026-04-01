@@ -13,7 +13,7 @@ export default function HeroSection() {
           priority
         />
 
-        <p className="mt-8 max-w-full text-[1.1rem] leading-snug font-medium text-white sm:mt-10 sm:max-w-xl sm:text-2xl">
+        <p className="mt-8 max-w-full text-[1rem] leading-snug font-medium text-white sm:mt-10 sm:max-w-xl sm:text-2xl">
           <span className="whitespace-nowrap">
             Japanese yakitori grilled over binchotan charcoal
           </span>
