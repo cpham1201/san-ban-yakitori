@@ -82,7 +82,7 @@ export default function AboutSection() {
   }, [isGalleryVisible]);
 
   return (
-    <section className="bg-[#101010]">
+    <section className="bg-[#080808]">
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20">
         <div className="hero-reveal">
           <div className="mx-auto max-w-4xl text-center">

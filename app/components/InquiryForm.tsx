@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { Check, AlertCircle } from "lucide-react";
 
 function getTodayString() {
   const today = new Date();
@@ -283,15 +284,25 @@ export default function InquiryForm() {
 
 
       {status.type && (
-        <p
-          className={`text-center text-sm ${
+        <div
+          role="status"
+          className={`status-card mx-auto flex max-w-xl items-start gap-3 rounded-lg border p-4 text-sm leading-6 ${
             status.type === "success"
-              ? "text-stone-300"
-              : "text-red-400"
+              ? "border-white/15 bg-white/[0.045] text-stone-200"
+              : "border-red-400/30 bg-red-950/20 text-red-200"
           }`}
         >
-          {status.message}
-        </p>
+          <span
+            className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${
+              status.type === "success"
+                ? "border-white/20 text-white"
+                : "border-red-400/30 text-red-300"
+            }`}
+          >
+            {status.type === "success" ? <Check size={14} /> : <AlertCircle size={14} />}
+          </span>
+          <span>{status.message}</span>
+        </div>
       )}
 
     </form>

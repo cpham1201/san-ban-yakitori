@@ -18,7 +18,7 @@ export default function ContactSection() {
             Send us an inquiry and we&apos;ll get back to you shortly.
           </p>
 
-          <div className="mt-8 flex gap-3">
+          <div className="mt-8 hidden gap-3 sm:flex">
             <a
               href="https://instagram.com/sanbanyakitori"
               target="_blank"
@@ -49,7 +49,37 @@ export default function ContactSection() {
         </Reveal>
 
         <Reveal delay={120}>
-          <InquiryForm />
+          <div>
+            <InquiryForm />
+
+            <div className="mt-8 flex justify-center gap-3 sm:hidden">
+              <a
+                href="https://instagram.com/sanbanyakitori"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/25 p-4 text-white transition hover:border-white hover:bg-white hover:text-black"
+                aria-label="Instagram"
+              >
+                <Instagram size={22} />
+              </a>
+
+              <a
+                href="mailto:bookings@sanbanyakitori.com"
+                className="rounded-full border border-white/25 p-4 text-white transition hover:border-white hover:bg-white hover:text-black"
+                aria-label="Email"
+              >
+                <Mail size={22} />
+              </a>
+
+              <a
+                href="sms:17147469119?body=Hi, I'm interested in booking San Ban Yakitori for an event."
+                className="rounded-full border border-white/25 p-4 text-white transition hover:border-white hover:bg-white hover:text-black"
+                aria-label="Text message"
+              >
+                <Phone size={22} />
+              </a>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

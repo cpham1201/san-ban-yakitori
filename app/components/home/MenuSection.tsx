@@ -52,7 +52,7 @@ export default function MenuSection() {
   return (
     <section
       id="menu"
-      className="scroll-mt-20 bg-[#101010]"
+      className="scroll-mt-20 bg-[#050505]"
     >
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20">
         <Reveal className="mb-9 text-center sm:mb-12">
