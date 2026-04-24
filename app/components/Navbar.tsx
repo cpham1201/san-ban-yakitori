@@ -130,7 +130,7 @@ export default function Navbar() {
         <nav className="mx-auto flex max-w-6xl flex-col px-4 py-5 text-stone-200">
           <button
             onClick={() => handleNavClick("packages")}
-            className="group flex min-h-14 items-center justify-between border-b border-white/10 px-1 text-left text-lg transition hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+            className="group flex min-h-12 items-center justify-between border-b border-white/10 px-1 text-left text-base transition hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
           >
             <span>Packages</span>
             <ChevronRight
@@ -140,7 +140,7 @@ export default function Navbar() {
           </button>
           <button
             onClick={() => handleNavClick("menu")}
-            className="group flex min-h-14 items-center justify-between border-b border-white/10 px-1 text-left text-lg transition hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+            className="group flex min-h-12 items-center justify-between border-b border-white/10 px-1 text-left text-base transition hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
           >
             <span>Menu</span>
             <ChevronRight
@@ -150,7 +150,7 @@ export default function Navbar() {
           </button>
           <button
             onClick={() => handleNavClick("contact")}
-            className="group flex min-h-14 items-center justify-between px-1 text-left text-lg transition hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
+            className="group flex min-h-12 items-center justify-between px-1 text-left text-base transition hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
           >
             <span>Inquire</span>
             <ChevronRight
