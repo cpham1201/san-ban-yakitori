@@ -6,9 +6,14 @@ html {
 
 body {
   margin: 0;
-  background: #0c0a09;
+  background: #050505;
   color: #f5f5f4;
-  font-family: Cambria, Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+::selection {
+  background: #e5e5e5;
+  color: #050505;
 }
 
 input[type="date"] {
@@ -26,4 +31,62 @@ input[type="date"]::-webkit-date-and-time-value {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 1;
+}
+
+.gallery-scroll {
+  scrollbar-width: none;
+}
+
+.gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.reveal {
+  opacity: 0;
+  filter: blur(1px);
+  transform: translateY(18px);
+  transition:
+    opacity 700ms ease,
+    filter 700ms ease,
+    transform 700ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.hero-reveal {
+  animation: hero-reveal 850ms ease both;
+}
+
+.hero-reveal-delay {
+  animation-delay: 180ms;
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero-reveal {
+    animation: none;
+    filter: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

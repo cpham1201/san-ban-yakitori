@@ -2,18 +2,18 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="border-b border-white/10 bg-[#0a0a0a]">
-      <div className="mx-auto flex max-w-6xl flex-col items-center px-6 pt-8 pb-20 text-center sm:pt-4 sm:pb-28">
+    <section className="border-b border-white/10 bg-black">
+      <div className="mx-auto flex min-h-[66svh] max-w-6xl flex-col items-center justify-center px-5 pb-14 pt-8 text-center sm:min-h-[66svh] sm:px-6 sm:py-14">
         <Image
           src="/logo2.png"
           alt="San Ban Yakitori"
-          width={190}
-          height={190}
-          className="object-contain"
+          width={150}
+          height={263}
+          className="hero-reveal h-64 w-auto object-contain sm:h-80"
           priority
         />
 
-        <p className="mt-8 max-w-full text-[1rem] leading-snug font-medium text-white sm:mt-10 sm:max-w-xl sm:text-2xl">
+        <p className="hero-reveal mt-8 max-w-[calc(100vw-2.5rem)] text-[clamp(1rem,2.35vw,1.6rem)] font-medium leading-snug text-white sm:mt-10">
           <span className="whitespace-nowrap">
             Japanese yakitori grilled over binchotan charcoal
           </span>

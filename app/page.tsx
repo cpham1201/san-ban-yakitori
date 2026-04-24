@@ -12,7 +12,7 @@ export default function HomePage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-black text-white">
+      <main className="min-h-screen overflow-hidden bg-[#050505] text-white">
         <HeroSection />
         <AboutSection />
         <PackagesSection />

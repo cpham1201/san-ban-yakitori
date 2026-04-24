@@ -114,7 +114,7 @@ export default function InquiryForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto mt-8 max-w-2xl space-y-5 text-left"
+      className="space-y-5 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-left shadow-2xl shadow-black/40 sm:p-6 lg:p-8"
     >
 
       {/* NAME / EMAIL */}
@@ -130,7 +130,7 @@ export default function InquiryForm() {
             value={form.name}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
           />
         </div>
 
@@ -145,7 +145,7 @@ export default function InquiryForm() {
             value={form.email}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
           />
         </div>
 
@@ -165,7 +165,7 @@ export default function InquiryForm() {
             value={form.phone}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
           />
         </div>
 
@@ -175,7 +175,7 @@ export default function InquiryForm() {
             Event Date
           </label>
 
-          <div className="relative w-full overflow-hidden rounded-2xl border border-white/15 bg-black">
+          <div className="relative w-full overflow-hidden rounded-lg border border-white/15 bg-black/70 transition hover:border-white/25 focus-within:border-white/55">
             <input
               name="eventDate"
               type="date"
@@ -208,7 +208,7 @@ export default function InquiryForm() {
             value={form.guestCount}
             onChange={updateField}
             required
-            className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+            className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
           />
 
         </div>
@@ -226,7 +226,7 @@ export default function InquiryForm() {
               value={form.eventType}
               onChange={updateField}
               required
-              className="w-full appearance-none rounded-2xl border border-white/15 bg-black px-4 py-3.5 pr-10 text-white outline-none transition focus:border-white/40"
+              className="w-full appearance-none rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 pr-10 text-white outline-none transition hover:border-white/25 focus:border-white/55"
             >
               <option value="">Select one</option>
               <option>Birthday</option>
@@ -261,7 +261,7 @@ export default function InquiryForm() {
           value={form.message}
           onChange={updateField}
           required
-          className="w-full rounded-2xl border border-white/15 bg-black px-4 py-3.5 text-white outline-none transition focus:border-white/40"
+          className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
           placeholder="Location, event details, menu interest, or anything else you'd like us to know."
         />
 
@@ -274,7 +274,7 @@ export default function InquiryForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-full border border-white/40 px-10 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-black disabled:opacity-50"
+          className="min-h-12 rounded-full border border-white/45 px-10 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-black disabled:translate-y-0 disabled:opacity-50"
         >
           {isSubmitting ? "SENDING..." : "SEND INQUIRY"}
         </button>
