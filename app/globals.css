@@ -114,12 +114,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .hero-reveal,
-  .status-card,
-  .gallery-marquee {
+  .status-card {
     animation: none;
     filter: none;
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .gallery-marquee {
+    animation-duration: 52s;
   }
 }
