@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -29,7 +29,6 @@ export default function AboutSection() {
     startX: 0,
     scrollLeft: 0,
   });
-  const [isGalleryVisible, setIsGalleryVisible] = useState(false);
 
   function scrollGallery(direction: -1 | 1) {
     const gallery = galleryRef.current;
@@ -58,29 +57,6 @@ export default function AboutSection() {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsGalleryVisible(entry.isIntersecting);
-      },
-      {
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.2,
-      }
-    );
-
-    observer.observe(gallery);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    const gallery = galleryRef.current;
-    if (!gallery || !isGalleryVisible) {
-      return;
-    }
-
     const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (shouldReduceMotion.matches) {
       return;
@@ -99,7 +75,7 @@ export default function AboutSection() {
       if (!isGalleryPausedRef.current) {
         const loopPoint = gallery.scrollWidth / 2;
 
-        gallery.scrollLeft += elapsed * 0.035;
+        gallery.scrollLeft += elapsed * 0.055;
 
         if (gallery.scrollLeft >= loopPoint) {
           gallery.scrollLeft -= loopPoint;
@@ -118,7 +94,7 @@ export default function AboutSection() {
       animationFrameRef.current = null;
       lastFrameTimeRef.current = null;
     };
-  }, [isGalleryVisible]);
+  }, []);
 
   return (
     <section className="bg-[#080808]">
