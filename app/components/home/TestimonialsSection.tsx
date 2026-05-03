@@ -45,15 +45,18 @@ export default function TestimonialsSection() {
     <section className="border-t border-white/10 bg-[#050505]">
       <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6 sm:py-14">
         <Reveal className="md:hidden">
-          <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.035]">
-            <figure className="flex min-h-[17.5rem] flex-col justify-center px-5 py-6 text-center">
+          <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/[0.035] shadow-[0_18px_60px_rgb(0_0_0_/_0.22)]">
+            <figure className="flex min-h-[14.25rem] flex-col justify-center px-5 py-5 text-center">
+              <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-stone-500">
+                Testimonials
+              </p>
               <blockquote
                 key={activeTestimonial.quote}
-                className="status-card text-[1.12rem] font-semibold leading-8 text-white"
+                className="status-card text-[1.05rem] font-semibold leading-7 text-white"
               >
                 &ldquo;{activeTestimonial.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-5 text-sm leading-6 text-stone-400">
+              <figcaption className="mt-4 text-sm leading-6 text-stone-400">
                 <span className="block font-semibold text-stone-200">
                   {activeTestimonial.event}
                 </span>
@@ -61,7 +64,7 @@ export default function TestimonialsSection() {
               </figcaption>
             </figure>
 
-            <div className="flex items-center justify-between border-t border-white/10 px-4 py-3">
+            <div className="flex items-center justify-between border-t border-white/10 bg-black/15 px-4 py-3">
               <div className="flex items-center gap-2">
                 {testimonials.map((testimonial, index) => (
                   <button
@@ -71,7 +74,7 @@ export default function TestimonialsSection() {
                     className={`h-2 rounded-full transition-all ${
                       index === activeIndex
                         ? "w-7 bg-white"
-                        : "w-2 bg-white/25"
+                        : "w-2 bg-white/20"
                     }`}
                     aria-label={`Show testimonial ${index + 1}`}
                   />
@@ -85,7 +88,7 @@ export default function TestimonialsSection() {
                 <button
                   type="button"
                   onClick={showPrevious}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition active:bg-white active:text-black"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-white transition active:bg-white active:text-black"
                   aria-label="Previous testimonial"
                 >
                   <ChevronLeft size={17} />
@@ -93,7 +96,7 @@ export default function TestimonialsSection() {
                 <button
                   type="button"
                   onClick={showNext}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white transition active:bg-white active:text-black"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-white transition active:bg-white active:text-black"
                   aria-label="Next testimonial"
                 >
                   <ChevronRight size={17} />
@@ -110,7 +113,7 @@ export default function TestimonialsSection() {
               delay={index * 80}
               className={index === 1 ? "md:mt-8" : index === 2 ? "md:mt-3" : ""}
             >
-              <figure className="group relative flex h-full min-h-[11rem] flex-col justify-between overflow-hidden rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-4 transition duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06] sm:min-h-[12rem] sm:rounded-[1.75rem] sm:p-6 md:min-h-0">
+              <figure className="group relative flex h-full min-h-[11rem] flex-col justify-between overflow-hidden rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-4 shadow-[0_18px_60px_rgb(0_0_0_/_0.18)] transition duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06] sm:min-h-[12rem] sm:rounded-[1.75rem] sm:p-6 md:min-h-0">
                 <span
                   className="absolute right-4 top-3 text-4xl leading-none text-white/[0.08] transition group-hover:text-white/[0.14] sm:right-5 sm:top-4 sm:text-5xl"
                   aria-hidden="true"
