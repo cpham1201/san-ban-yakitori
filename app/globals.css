@@ -56,7 +56,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .reveal {
-  opacity: 0;
+  opacity: 1;
   filter: blur(1px);
   transform: translateY(18px);
   transition:
@@ -66,6 +66,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transition-delay: var(--reveal-delay, 0ms);
 }
 
+.animations-ready .reveal:not(.reveal-visible) {
+  opacity: 0;
+}
+
 .reveal-visible {
   opacity: 1;
   filter: blur(0);
@@ -73,10 +77,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .hero-reveal {
+  animation: none;
+}
+
+.animations-ready .hero-reveal {
   animation: hero-reveal 850ms ease both;
 }
 
-.hero-reveal-delay {
+.animations-ready .hero-reveal-delay {
   animation-delay: 180ms;
 }
 

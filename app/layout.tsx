@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import AnimationBootstrap from "./components/AnimationBootstrap";
 
 const siteUrl = "https://sanbanyakitori.com";
 const siteName = "San Ban Yakitori";
@@ -167,6 +168,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <AnimationBootstrap />
         {children}
         <Analytics />
       </body>
