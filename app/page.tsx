@@ -6,6 +6,7 @@ import HeroSection from "./components/home/HeroSection";
 import AboutSection from "./components/home/AboutSection";
 import ContactSection from "./components/home/ContactSection";
 import MenuSection from "./components/home/MenuSection";
+import TestimonialsSection from "./components/home/TestimonialsSection";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
         <PackagesSection />
         <MenuSection />
         <ContactSection />
+        <TestimonialsSection />
       </main>
     </>
   );
