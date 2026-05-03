@@ -87,16 +87,16 @@ export default function AboutSection() {
         <div className="hero-reveal">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="mx-auto max-w-xl text-2xl font-semibold leading-tight text-white sm:text-4xl">
-              Yakitori Over Fire
+              Built Around Yakitori
             </h2>
 
-            <p className="mt-6 max-w-3xl text-[0.95rem] leading-8 text-stone-300 md:mx-auto">
+            <p className="mt-6 max-w-3xl text-base leading-8 text-stone-300 md:mx-auto sm:text-[1.05rem]">
               San Bạn Yakitori is three friends with a shared passion for grilling
               delicious yakitori over charcoal and bringing people together
               through food.
             </p>
 
-            <p className="mt-5 max-w-3xl text-[0.95rem] leading-8 text-stone-300 md:mx-auto">
+            <p className="mt-5 max-w-3xl text-base leading-8 text-stone-300 md:mx-auto sm:text-[1.05rem]">
               We&apos;re a pop-up catering service serving Orange County and surrounding areas,
               offering authentic yakitori to private events, parties, and special gatherings.
             </p>

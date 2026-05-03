@@ -14,7 +14,7 @@ export default function ContactSection() {
             Interested in having San Bạn Yakitori at your event?
           </p>
 
-          <p className="mt-4 text-sm leading-6 text-stone-300">
+          <p className="mt-4 text-base leading-7 text-stone-300">
             Send us an inquiry and we&apos;ll get back to you shortly.
           </p>
 

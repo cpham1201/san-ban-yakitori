@@ -28,7 +28,7 @@ function MenuCard({ item }: MenuCardProps) {
       </div>
 
       <div className="flex min-h-28 flex-1 items-center p-4 sm:min-h-24">
-        <h3 className="text-[0.82rem] font-semibold leading-snug text-white sm:text-sm">
+        <h3 className="text-[0.95rem] font-semibold leading-snug text-white sm:text-base">
           {item.name}
         </h3>
       </div>

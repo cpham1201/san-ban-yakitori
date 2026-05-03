@@ -2,26 +2,31 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="border-b border-white/10 bg-black">
-      <div className="mx-auto flex min-h-[66svh] max-w-6xl flex-col items-center justify-center px-5 pb-14 pt-8 text-center sm:min-h-[66svh] sm:px-6 sm:py-14">
-        <Image
-          src="/logo2.png"
-          alt="San Ban Yakitori"
-          width={150}
-          height={263}
-          className="hero-reveal h-64 w-auto object-contain sm:h-80"
-          priority
-        />
+    <section className="relative min-h-[66svh] overflow-hidden border-b border-white/10 bg-black sm:min-h-[76svh]">
+      <Image
+        src="/hero-yakitori-fire.jpg"
+        alt="Yakitori grilling over open flame at a San Ban Yakitori event"
+        fill
+        className="object-cover object-[48%_center] saturate-[1.18] contrast-[1.08] brightness-[1.08] sm:object-[50%_center]"
+        sizes="100vw"
+        quality={92}
+        priority
+      />
 
-        <p className="hero-reveal mt-8 max-w-[calc(100vw-2.5rem)] text-[clamp(1rem,2.35vw,1.6rem)] font-medium leading-snug text-white sm:mt-10">
-          <span className="whitespace-nowrap">
-            Japanese yakitori grilled over binchotan charcoal
-          </span>
-          <br />
-          <span className="text-white">
-            Served fresh at your next event
-          </span>
-        </p>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/10 to-black/90" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/25 to-black/10" />
+
+      <div className="relative mx-auto flex min-h-[66svh] max-w-6xl items-end px-5 pb-8 pt-20 sm:min-h-[76svh] sm:px-6 sm:pb-14 lg:pb-16">
+        <div className="max-w-2xl text-left">
+          <h1 className="hero-reveal mt-4 max-w-[11ch] text-4xl font-semibold leading-[1.05] text-white [text-shadow:0_2px_18px_rgb(0_0_0_/_0.55)] sm:max-w-2xl sm:text-6xl lg:text-7xl">
+            Live Yakitori, Grilled Over Fire
+          </h1>
+
+          <p className="hero-reveal mt-5 max-w-[21rem] text-base leading-7 text-stone-100 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:mt-6 sm:max-w-xl sm:text-xl sm:leading-8">
+            Authentic Japanese yakitori grilled fresh for private events across OC, LA,
+            and nearby areas.
+          </p>
+        </div>
       </div>
     </section>
   );

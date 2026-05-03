@@ -122,7 +122,7 @@ export default function InquiryForm() {
       <div className="grid gap-5 sm:grid-cols-2">
 
         <div className="min-w-0">
-          <label className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-[0.95rem] text-stone-300">
             Name
           </label>
 
@@ -136,7 +136,7 @@ export default function InquiryForm() {
         </div>
 
         <div className="min-w-0">
-          <label className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-[0.95rem] text-stone-300">
             Email
           </label>
 
@@ -157,7 +157,7 @@ export default function InquiryForm() {
       <div className="grid gap-5 sm:grid-cols-2">
 
         <div className="min-w-0">
-          <label className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-[0.95rem] text-stone-300">
             Phone
           </label>
 
@@ -172,7 +172,7 @@ export default function InquiryForm() {
 
         <div className="min-w-0">
 
-          <label className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-[0.95rem] text-stone-300">
             Event Date
           </label>
 
@@ -198,7 +198,7 @@ export default function InquiryForm() {
 
         <div className="min-w-0">
 
-          <label className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-[0.95rem] text-stone-300">
             Estimated Guest Count
           </label>
 
@@ -216,7 +216,7 @@ export default function InquiryForm() {
 
         <div className="min-w-0">
 
-          <label className="mb-2 block text-sm text-stone-300">
+          <label className="mb-2 block text-[0.95rem] text-stone-300">
             Event Type
           </label>
 
@@ -252,7 +252,7 @@ export default function InquiryForm() {
       {/* MESSAGE */}
       <div>
 
-        <label className="mb-2 block text-sm text-stone-300">
+        <label className="mb-2 block text-[0.95rem] text-stone-300">
           Tell us about your event
         </label>
 
@@ -286,7 +286,7 @@ export default function InquiryForm() {
       {status.type && (
         <div
           role="status"
-          className={`status-card mx-auto flex max-w-xl items-start gap-3 rounded-lg border p-4 text-sm leading-6 ${
+          className={`status-card mx-auto flex max-w-xl items-start gap-3 rounded-lg border p-4 text-[0.95rem] leading-6 ${
             status.type === "success"
               ? "border-white/15 bg-white/[0.045] text-stone-200"
               : "border-red-400/30 bg-red-950/20 text-red-200"
