@@ -110,7 +110,7 @@ export default function AboutSection() {
 
   return (
     <section className="bg-[#080808]">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 sm:py-[4.5rem]">
         <div className="hero-reveal">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="mx-auto max-w-xl text-2xl font-semibold leading-tight text-white sm:text-4xl">
@@ -120,7 +120,10 @@ export default function AboutSection() {
             <p className="mt-6 max-w-3xl text-base leading-8 text-stone-300 md:mx-auto sm:text-[1.05rem]">
               San Bạn Yakitori is a pop-up catering service from three friends{" "}
               <br className="hidden md:block" />
-              who love bringing people together over charcoal-grilled skewers.
+              who love bringing people together over charcoal-grilled skewers.{" "}
+              <br className="hidden md:block" />
+              Serving birthdays, private events, and celebrations across OC, LA,
+              and nearby areas.
             </p>
           </div>
         </div>
