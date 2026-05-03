@@ -12,12 +12,14 @@ export async function POST(req: Request) {
       email,
       phone,
       eventDate,
+      eventLocation,
       guestCount,
+      preferredPackage,
       eventType,
       message,
     } = body;
 
-    if (!name || !email || !phone || !eventDate || !guestCount || !eventType || !message) {
+    if (!name || !email || !phone || !eventDate || !eventLocation || !guestCount || !eventType) {
       return NextResponse.json(
         { error: "Please fill out all fields." },
         { status: 400 }
@@ -36,11 +38,13 @@ Name: ${name}
 Email: ${email}
 Phone: ${phone}
 Event Date: ${eventDate}
+Event Location / City: ${eventLocation}
 Guest Count: ${guestCount}
 Event Type: ${eventType}
+Preferred Package: ${preferredPackage || "Not sure yet"}
 
 Message:
-${message}
+${message || "No additional details provided."}
       `,
     });
 

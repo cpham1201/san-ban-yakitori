@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Check, AlertCircle } from "lucide-react";
+import { Check, AlertCircle, ArrowRight } from "lucide-react";
 
 function getTodayString() {
   const today = new Date();
@@ -12,14 +12,20 @@ function getTodayString() {
 }
 
 export default function InquiryForm() {
-  const [form, setForm] = useState({
+  const emptyForm = {
     name: "",
     email: "",
     phone: "",
     eventDate: "",
+    eventLocation: "",
     guestCount: "",
+    preferredPackage: "",
     eventType: "",
     message: "",
+  };
+
+  const [form, setForm] = useState({
+    ...emptyForm,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -89,15 +95,7 @@ export default function InquiryForm() {
         message: "Thank you for your interest in San Bạn Yakitori. We’ve received your inquiry and will get back to you shortly.",
       });
 
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        eventDate: "",
-        guestCount: "",
-        eventType: "",
-        message: "",
-      });
+      setForm(emptyForm);
 
     } catch (error) {
       setStatus({
@@ -112,145 +110,240 @@ export default function InquiryForm() {
     }
   }
 
+  if (status.type === "success") {
+    return (
+      <div className="rounded-lg border border-white/10 bg-white/[0.035] p-6 text-center shadow-2xl shadow-black/40 sm:p-8">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/[0.04] text-white">
+          <Check size={20} />
+        </div>
+
+        <h3 className="mt-5 text-2xl font-semibold text-white">
+          Inquiry Received
+        </h3>
+
+        <p className="mx-auto mt-4 max-w-md text-base leading-7 text-stone-300">
+          Thank you for your interest in San Bạn Yakitori. We&apos;ll get back
+          to you shortly with availability and next steps.
+        </p>
+
+        <button
+          type="button"
+          onClick={() => {
+            setStatus({ type: null, message: "" });
+            setForm(emptyForm);
+          }}
+          className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full border border-white/35 px-7 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:-translate-y-0.5 hover:bg-white hover:text-black"
+        >
+          Send Another Inquiry
+        </button>
+      </div>
+    );
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-5 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-left shadow-2xl shadow-black/40 sm:p-6 lg:p-8"
+      className="space-y-6 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-left shadow-2xl shadow-black/40 sm:space-y-5 sm:p-6 lg:p-8"
     >
 
-      {/* NAME / EMAIL */}
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="space-y-5">
+        <p className="border-b border-white/10 pb-3 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 sm:hidden">
+          Contact
+        </p>
 
-        <div className="min-w-0">
-          <label className="mb-2 block text-[0.95rem] text-stone-300">
-            Name
-          </label>
+        {/* NAME / EMAIL */}
+        <div className="grid gap-5 sm:grid-cols-2">
 
-          <input
-            name="name"
-            value={form.name}
-            onChange={updateField}
-            required
-            className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
-          />
-        </div>
+          <div className="min-w-0">
+            <label className="mb-2 block text-[0.95rem] text-stone-300">
+              Name
+            </label>
 
-        <div className="min-w-0">
-          <label className="mb-2 block text-[0.95rem] text-stone-300">
-            Email
-          </label>
-
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={updateField}
-            required
-            className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
-          />
-        </div>
-
-      </div>
-
-
-      {/* PHONE / DATE */}
-      <div className="grid gap-5 sm:grid-cols-2">
-
-        <div className="min-w-0">
-          <label className="mb-2 block text-[0.95rem] text-stone-300">
-            Phone
-          </label>
-
-          <input
-            name="phone"
-            value={form.phone}
-            onChange={updateField}
-            required
-            className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
-          />
-        </div>
-
-        <div className="min-w-0">
-
-          <label className="mb-2 block text-[0.95rem] text-stone-300">
-            Event Date
-          </label>
-
-          <div className="relative w-full overflow-hidden rounded-lg border border-white/15 bg-black/70 transition hover:border-white/25 focus-within:border-white/55">
             <input
-              name="eventDate"
-              type="date"
-              min={getTodayString()}
-              value={form.eventDate}
+              name="name"
+              value={form.name}
               onChange={updateField}
               required
-              className="block h-[54px] w-full appearance-none bg-transparent px-4 py-3.5 text-white outline-none [color-scheme:dark]"
+              className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
+            />
+          </div>
+
+          <div className="min-w-0">
+            <label className="mb-2 block text-[0.95rem] text-stone-300">
+              Email
+            </label>
+
+            <input
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={updateField}
+              required
+              className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
             />
           </div>
 
         </div>
 
-      </div>
 
+        {/* PHONE / DATE */}
+        <div className="grid gap-5 sm:grid-cols-2">
 
-      {/* GUEST COUNT / EVENT TYPE */}
-      <div className="grid gap-5 sm:grid-cols-2">
+          <div className="min-w-0">
+            <label className="mb-2 block text-[0.95rem] text-stone-300">
+              Phone
+            </label>
 
-        <div className="min-w-0">
-
-          <label className="mb-2 block text-[0.95rem] text-stone-300">
-            Estimated Guest Count
-          </label>
-
-          <input
-            name="guestCount"
-            type="text"
-            placeholder="e.g. 30–40 guests"
-            value={form.guestCount}
-            onChange={updateField}
-            required
-            className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
-          />
-
-        </div>
-
-        <div className="min-w-0">
-
-          <label className="mb-2 block text-[0.95rem] text-stone-300">
-            Event Type
-          </label>
-
-          <div className="relative">
-
-            <select
-              name="eventType"
-              value={form.eventType}
+            <input
+              name="phone"
+              value={form.phone}
               onChange={updateField}
               required
-              className="w-full appearance-none rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 pr-10 text-white outline-none transition hover:border-white/25 focus:border-white/55"
-            >
-              <option value="">Select one</option>
-              <option>Birthday</option>
-              <option>Corporate Event</option>
-              <option>Wedding</option>
-              <option>Engagement Party</option>
-              <option>Private Party</option>
-              <option>Other</option>
-            </select>
+              className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
+            />
+          </div>
 
-            <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-stone-400">
-              ▾
+          <div className="min-w-0">
+
+            <label className="mb-2 block text-[0.95rem] text-stone-300">
+              Event Date
+            </label>
+
+            <div className="relative w-full overflow-hidden rounded-lg border border-white/15 bg-black/70 transition hover:border-white/25 focus-within:border-white/55">
+              <input
+                name="eventDate"
+                type="date"
+                min={getTodayString()}
+                value={form.eventDate}
+                onChange={updateField}
+                required
+                className="block h-[54px] w-full appearance-none bg-transparent px-4 py-3.5 text-white outline-none [color-scheme:dark]"
+              />
             </div>
 
           </div>
 
         </div>
+      </div>
 
+      <div className="space-y-5 border-t border-white/10 pt-5 sm:border-t-0 sm:pt-0">
+        <p className="border-b border-white/10 pb-3 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 sm:hidden">
+          Event Details
+        </p>
+
+        {/* LOCATION / GUEST COUNT */}
+        <div className="grid gap-5 sm:grid-cols-2">
+
+          <div className="min-w-0">
+
+            <label className="mb-2 block text-[0.95rem] text-stone-300">
+              Location / City
+            </label>
+
+            <input
+              name="eventLocation"
+              type="text"
+              placeholder="e.g. Irvine, CA"
+              value={form.eventLocation}
+              onChange={updateField}
+              required
+              className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
+            />
+
+          </div>
+
+          <div className="min-w-0">
+
+            <label className="mb-2 block text-[0.95rem] text-stone-300">
+              Estimated Guest Count
+            </label>
+
+            <input
+              name="guestCount"
+              type="text"
+              placeholder="e.g. 30–40 guests"
+              value={form.guestCount}
+              onChange={updateField}
+              required
+              className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
+            />
+
+          </div>
+
+        </div>
+
+
+        {/* EVENT TYPE / PACKAGE */}
+        <div className="grid gap-5 sm:grid-cols-2">
+
+          <div className="min-w-0">
+
+            <label className="mb-2 block text-[0.95rem] text-stone-300">
+              Event Type
+            </label>
+
+            <div className="relative">
+
+              <select
+                name="eventType"
+                value={form.eventType}
+                onChange={updateField}
+                required
+                className="w-full appearance-none rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 pr-10 text-white outline-none transition hover:border-white/25 focus:border-white/55"
+              >
+                <option value="">Select one</option>
+                <option>Birthday</option>
+                <option>Corporate Event</option>
+                <option>Wedding</option>
+                <option>Engagement Party</option>
+                <option>Private Party</option>
+                <option>Other</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-stone-400">
+                ▾
+              </div>
+
+            </div>
+
+          </div>
+
+          <div className="min-w-0">
+
+            <label className="mb-2 block text-[0.95rem] text-stone-300">
+              Preferred Package
+            </label>
+
+            <div className="relative">
+
+              <select
+                name="preferredPackage"
+                value={form.preferredPackage}
+                onChange={updateField}
+                className="w-full appearance-none rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 pr-10 text-white outline-none transition hover:border-white/25 focus:border-white/55"
+              >
+                <option value="">Not sure yet</option>
+                <option>Package A</option>
+                <option>Package B</option>
+                <option>Package C</option>
+                <option>Package D</option>
+                <option>Package E</option>
+              </select>
+
+              <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-stone-400">
+                ▾
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
       </div>
 
 
       {/* MESSAGE */}
-      <div>
+      <div className="border-t border-white/10 pt-5 sm:border-t-0 sm:pt-0">
 
         <label className="mb-2 block text-[0.95rem] text-stone-300">
           Tell us about your event
@@ -261,9 +354,8 @@ export default function InquiryForm() {
           rows={5}
           value={form.message}
           onChange={updateField}
-          required
           className="w-full rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 text-white outline-none transition hover:border-white/25 focus:border-white/55"
-          placeholder="Location, event details, menu interest, or anything else you'd like us to know."
+          placeholder="Event details, menu interest, setup notes, or anything special you'd like us to know."
         />
 
       </div>
@@ -275,9 +367,15 @@ export default function InquiryForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="min-h-12 rounded-full border border-white/45 px-10 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-black disabled:translate-y-0 disabled:opacity-50"
+          className="group inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-white px-7 py-2.5 text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-stone-200 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-55 sm:px-8"
         >
-          {isSubmitting ? "SENDING..." : "SEND INQUIRY"}
+          <span>{isSubmitting ? "Sending" : "Send Inquiry"}</span>
+          <ArrowRight
+            size={15}
+            strokeWidth={1.8}
+            className="transition group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
         </button>
 
       </div>
@@ -286,20 +384,10 @@ export default function InquiryForm() {
       {status.type && (
         <div
           role="status"
-          className={`status-card mx-auto flex max-w-xl items-start gap-3 rounded-lg border p-4 text-[0.95rem] leading-6 ${
-            status.type === "success"
-              ? "border-white/15 bg-white/[0.045] text-stone-200"
-              : "border-red-400/30 bg-red-950/20 text-red-200"
-          }`}
+          className="status-card mx-auto flex max-w-xl items-start gap-3 rounded-lg border border-red-400/30 bg-red-950/20 p-4 text-[0.95rem] leading-6 text-red-200"
         >
-          <span
-            className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${
-              status.type === "success"
-                ? "border-white/20 text-white"
-                : "border-red-400/30 text-red-300"
-            }`}
-          >
-            {status.type === "success" ? <Check size={14} /> : <AlertCircle size={14} />}
+          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-red-400/30 text-red-300">
+            <AlertCircle size={14} />
           </span>
           <span>{status.message}</span>
         </div>
