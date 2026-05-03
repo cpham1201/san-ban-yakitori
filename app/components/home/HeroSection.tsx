@@ -18,8 +18,9 @@ export default function HeroSection() {
 
       <div className="relative mx-auto flex min-h-[66svh] max-w-6xl items-end px-5 pb-8 pt-20 sm:min-h-[76svh] sm:px-6 sm:pb-14 lg:pb-16">
         <div className="max-w-2xl text-left">
-          <h1 className="hero-reveal mt-4 max-w-[11ch] text-4xl font-semibold leading-[1.05] text-white [text-shadow:0_2px_18px_rgb(0_0_0_/_0.55)] sm:max-w-2xl sm:text-6xl lg:text-7xl">
-            Live Yakitori, Grilled Over Fire
+          <h1 className="hero-reveal mt-4 text-4xl font-semibold leading-[1.05] text-white [text-shadow:0_2px_18px_rgb(0_0_0_/_0.55)] sm:text-6xl lg:text-7xl">
+            <span className="block">Live Yakitori</span>
+            <span className="block whitespace-nowrap">Grilled Over Fire</span>
           </h1>
 
           <p className="hero-reveal mt-5 max-w-[21rem] text-base leading-7 text-stone-100 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:mt-6 sm:max-w-xl sm:text-xl sm:leading-8">
