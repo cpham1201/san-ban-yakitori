@@ -123,6 +123,33 @@ export default function AboutSection() {
         </div>
 
         <div className="hero-reveal relative">
+          <div className="gallery-scroll -mx-5 mt-8 overflow-hidden px-5 pb-2 sm:-mx-6 sm:px-6 md:hidden">
+            <div className="gallery-marquee flex w-max gap-3">
+              {[galleryImages, galleryImages].map((imageSet, setIndex) => (
+                <div
+                  key={setIndex}
+                  className="flex gap-3 pr-3"
+                  aria-hidden={setIndex > 0}
+                >
+                  {imageSet.map((image) => (
+                    <div
+                      key={`${image.src}-${setIndex}`}
+                      className="relative aspect-[4/3] w-[42vw] flex-none overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] sm:w-[48vw]"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={setIndex > 0 ? "" : image.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 640px) 48vw, 42vw"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+
           <button
             type="button"
             onClick={() => scrollGallery(-1)}
@@ -141,7 +168,7 @@ export default function AboutSection() {
             <ChevronRight size={22} />
           </button>
 
-          <div className="relative">
+          <div className="relative hidden md:block">
             <div
               ref={galleryRef}
               className="gallery-scroll -mx-5 mt-8 flex cursor-grab select-none gap-3 overflow-x-auto px-5 pb-2 active:cursor-grabbing sm:-mx-6 sm:gap-4 sm:px-6 md:mt-10 lg:-mx-8 lg:px-8"

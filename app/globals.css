@@ -41,6 +41,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
 }
 
+.gallery-marquee {
+  animation: gallery-marquee 34s linear infinite;
+  will-change: transform;
+}
+
 .reveal {
   opacity: 0;
   filter: blur(1px);
@@ -96,10 +101,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 }
 
+@keyframes gallery-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .hero-reveal,
-  .status-card {
+  .status-card,
+  .gallery-marquee {
     animation: none;
     filter: none;
     opacity: 1;
