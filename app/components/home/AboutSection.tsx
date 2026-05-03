@@ -17,9 +17,13 @@ const galleryImages = [
   { src: "/gallery/_DSC0930.jpg", alt: "Cherry tomatoes served from the grill" },
 ];
 
+const scrollingGalleryImages = [...galleryImages, ...galleryImages];
+
 export default function AboutSection() {
   const galleryRef = useRef<HTMLDivElement>(null);
   const isGalleryPausedRef = useRef(false);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastFrameTimeRef = useRef<number | null>(null);
   const dragStateRef = useRef({
     isDragging: false,
     startX: 0,
@@ -82,29 +86,37 @@ export default function AboutSection() {
       return;
     }
 
-    const interval = window.setInterval(() => {
-      if (isGalleryPausedRef.current) {
+    function animate(timestamp: number) {
+      const gallery = galleryRef.current;
+      if (!gallery) {
         return;
       }
 
-      const firstCard = gallery.querySelector<HTMLElement>("[data-gallery-card]");
-      if (!firstCard) {
-        return;
+      const lastFrameTime = lastFrameTimeRef.current ?? timestamp;
+      const elapsed = timestamp - lastFrameTime;
+      lastFrameTimeRef.current = timestamp;
+
+      if (!isGalleryPausedRef.current) {
+        const loopPoint = gallery.scrollWidth / 2;
+
+        gallery.scrollLeft += elapsed * 0.035;
+
+        if (gallery.scrollLeft >= loopPoint) {
+          gallery.scrollLeft -= loopPoint;
+        }
       }
 
-      const gap = Number.parseFloat(window.getComputedStyle(gallery).columnGap || "0");
-      const step = firstCard.offsetWidth + gap;
-      const maxScroll = gallery.scrollWidth - gallery.clientWidth;
-      const nextScroll = gallery.scrollLeft + step >= maxScroll - 4 ? 0 : gallery.scrollLeft + step;
+      animationFrameRef.current = window.requestAnimationFrame(animate);
+    }
 
-      gallery.scrollTo({
-        left: nextScroll,
-        behavior: "smooth",
-      });
-    }, 3800);
+    animationFrameRef.current = window.requestAnimationFrame(animate);
 
     return () => {
-      window.clearInterval(interval);
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+      animationFrameRef.current = null;
+      lastFrameTimeRef.current = null;
     };
   }, [isGalleryVisible]);
 
@@ -117,13 +129,19 @@ export default function AboutSection() {
               Built Around Yakitori
             </h2>
 
-            <p className="mt-6 max-w-3xl text-base leading-8 text-stone-300 md:mx-auto sm:text-[1.05rem]">
+            <p className="mx-auto mt-6 max-w-[22rem] text-base leading-8 text-stone-300 sm:max-w-3xl sm:text-[1.05rem] md:mx-auto">
               San Bạn Yakitori is a pop-up catering service from three friends{" "}
               <br className="hidden md:block" />
               who love bringing people together over charcoal-grilled skewers.{" "}
               <br className="hidden md:block" />
-              Serving birthdays, private events, and celebrations throughout
-              OC and LA.
+              <span className="md:hidden">
+                Serving birthdays, private events, and celebrations throughout
+                Orange County and Los&nbsp;Angeles.
+              </span>
+              <span className="hidden md:inline">
+                Serving birthdays, private events, and celebrations throughout
+                Orange County and Los Angeles.
+              </span>
             </p>
           </div>
         </div>
@@ -150,7 +168,7 @@ export default function AboutSection() {
           <div className="relative">
             <div
               ref={galleryRef}
-              className="gallery-scroll -mx-5 mt-8 flex cursor-grab select-none snap-x gap-3 overflow-x-auto px-5 pb-2 active:cursor-grabbing sm:-mx-6 sm:gap-4 sm:px-6 md:mt-10 lg:-mx-8 lg:px-8"
+              className="gallery-scroll -mx-5 mt-8 flex cursor-grab select-none gap-3 overflow-x-auto px-5 pb-2 active:cursor-grabbing sm:-mx-6 sm:gap-4 sm:px-6 md:mt-10 lg:-mx-8 lg:px-8"
               onPointerDown={(event) => {
                 const gallery = galleryRef.current;
                 if (!gallery) {
@@ -187,16 +205,13 @@ export default function AboutSection() {
                 dragStateRef.current.isDragging = false;
                 isGalleryPausedRef.current = false;
               }}
-              onMouseEnter={() => {
-                isGalleryPausedRef.current = true;
-              }}
               onMouseLeave={() => {
                 dragStateRef.current.isDragging = false;
                 isGalleryPausedRef.current = false;
               }}
               onWheel={(event) => {
                 const gallery = galleryRef.current;
-                if (!gallery || Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+                if (!gallery || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
                   return;
                 }
 
@@ -206,18 +221,19 @@ export default function AboutSection() {
                 }
 
                 event.preventDefault();
-                gallery.scrollLeft += event.deltaY;
+                gallery.scrollLeft += event.deltaX;
               }}
             >
-              {galleryImages.map((image) => (
+              {scrollingGalleryImages.map((image, index) => (
                 <div
-                  key={image.src}
+                  key={`${image.src}-${index}`}
                   data-gallery-card
-                  className="relative aspect-[4/3] w-[42vw] flex-none snap-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] sm:w-[48vw] md:w-[36%] lg:w-[30%]"
+                  aria-hidden={index >= galleryImages.length}
+                  className="relative aspect-[4/3] w-[42vw] flex-none overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] sm:w-[48vw] md:w-[36%] lg:w-[30%]"
                 >
                   <Image
                     src={image.src}
-                    alt={image.alt}
+                    alt={index >= galleryImages.length ? "" : image.alt}
                     fill
                     draggable={false}
                     className="pointer-events-none object-cover"

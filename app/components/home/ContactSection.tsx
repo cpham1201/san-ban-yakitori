@@ -15,7 +15,8 @@ export default function ContactSection() {
           </p>
 
           <p className="mt-4 text-base leading-7 text-stone-300">
-            Send us an inquiry and we&apos;ll get back to you shortly.
+            Send us your date, guest count, and event details. We&apos;ll
+            get back to you shortly.
           </p>
 
           <div className="mt-8 hidden gap-3 sm:flex">

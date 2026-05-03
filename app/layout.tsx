@@ -5,15 +5,26 @@ import { Analytics } from "@vercel/analytics/react";
 const siteUrl = "https://sanbanyakitori.com";
 const siteName = "San Ban Yakitori";
 const siteDescription =
-  "Japanese yakitori catering for private events, parties, pop-ups, and special gatherings in Orange County and surrounding Southern California areas.";
+  "Live yakitori catering for birthdays, private events, parties, and special celebrations across Orange County, Los Angeles, and Southern California.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "San Ban Yakitori | Yakitori Catering in Orange County",
+    default: "San Ban Yakitori | Yakitori Catering in Orange County & Los Angeles",
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
+  keywords: [
+    "yakitori catering",
+    "Orange County yakitori catering",
+    "Los Angeles yakitori catering",
+    "Japanese catering Orange County",
+    "Japanese catering Los Angeles",
+    "private event catering",
+    "birthday catering",
+    "live grill catering",
+    "binchotan charcoal yakitori",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -39,7 +50,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "San Ban Yakitori | Yakitori Catering in Orange County",
+    title: "San Ban Yakitori | Yakitori Catering in Orange County & Los Angeles",
     description: siteDescription,
     url: siteUrl,
     siteName,
@@ -56,7 +67,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "San Ban Yakitori | Yakitori Catering in Orange County",
+    title: "San Ban Yakitori | Yakitori Catering in Orange County & Los Angeles",
     description: siteDescription,
     images: ["/gallery/_DSC0996.jpg"],
   },
@@ -97,15 +108,23 @@ const structuredData = {
     },
     {
       "@type": "AdministrativeArea",
+      name: "Los Angeles, CA",
+    },
+    {
+      "@type": "AdministrativeArea",
       name: "Southern California",
     },
   ],
   serviceType: [
     "Yakitori catering",
+    "Live yakitori catering",
     "Japanese catering",
     "Private event catering",
+    "Birthday catering",
+    "Special event catering",
     "Pop-up catering",
     "Party catering",
+    "Live grill catering",
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -115,14 +134,14 @@ const structuredData = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Yakitori catering for private events",
+          name: "Live yakitori catering for private events in Orange County and Los Angeles",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Japanese charcoal-grilled skewers for parties and pop-ups",
+          name: "Japanese charcoal-grilled skewers for birthdays, parties, and pop-ups",
         },
       },
     ],

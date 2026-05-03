@@ -14,7 +14,7 @@ export default function PackagesSection() {
           {packages.map((pkg, index) => (
             <Reveal key={pkg.name} delay={index * 70}>
               <div className="group flex h-full flex-col rounded-lg border border-white/10 bg-white/[0.035] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06] sm:p-5">
-                <div className="mb-5 flex items-center justify-between gap-4 border-b border-white/10 pb-4 sm:mb-6">
+                <div className="mb-4 flex items-center justify-between gap-4 border-b border-white/10 pb-4 sm:mb-6">
                   <h3 className="text-sm font-semibold text-white sm:text-[0.95rem]">
                     {pkg.name}
                   </h3>
@@ -26,18 +26,31 @@ export default function PackagesSection() {
                 <p className="text-lg font-semibold leading-none text-white sm:text-xl">
                   {pkg.skewers}
                 </p>
+                <p className="mt-2 text-[0.95rem] leading-6 text-stone-300 sm:text-base lg:whitespace-nowrap lg:text-[0.95rem]">
+                  {pkg.guests}
+                </p>
 
-                <ul className="mt-4 flex flex-1 flex-col justify-end space-y-2 text-[0.95rem] leading-6 text-stone-300 sm:mt-5 sm:space-y-3 sm:text-base">
-                  <li>{pkg.time}</li>
-                  <li>Setup + breakdown included</li>
+                <ul className="mt-5 flex flex-1 flex-col justify-end divide-y divide-white/10 border-t border-white/10 text-[0.95rem] leading-6 text-stone-300 sm:mt-7 sm:text-base">
+                  <li className="flex items-center justify-between gap-4 py-2.5 sm:py-3">
+                    <span>{pkg.service}</span>
+                    <span className="text-xs uppercase tracking-[0.14em] text-stone-500">
+                      Service
+                    </span>
+                  </li>
+                  <li className="flex items-center justify-between gap-4 py-2.5 sm:py-3">
+                    <span>Setup + breakdown</span>
+                    <span className="text-xs uppercase tracking-[0.14em] text-stone-500">
+                      Included
+                    </span>
+                  </li>
                 </ul>
               </div>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={160} className="mt-8 text-center text-base text-stone-300">
-          Please inquire for pricing and menu details.
+        <Reveal delay={160} className="mx-auto mt-8 max-w-3xl text-center text-base leading-7 text-stone-300">
+          <p>Please inquire for pricing and menu details.</p>
         </Reveal>
       </div>
     </section>
