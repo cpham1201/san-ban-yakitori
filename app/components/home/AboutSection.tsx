@@ -122,8 +122,8 @@ export default function AboutSection() {
               <br className="hidden md:block" />
               who love bringing people together over charcoal-grilled skewers.{" "}
               <br className="hidden md:block" />
-              Serving birthdays, private events, and celebrations across OC, LA,
-              and nearby areas.
+              Serving birthdays, private events, and celebrations throughout
+              OC and LA.
             </p>
           </div>
         </div>
