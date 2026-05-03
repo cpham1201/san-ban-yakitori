@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
   { src: "/gallery/_DSC0771.jpg", alt: "San Ban Yakitori team at the grill" },
@@ -19,7 +20,33 @@ const galleryImages = [
 export default function AboutSection() {
   const galleryRef = useRef<HTMLDivElement>(null);
   const isGalleryPausedRef = useRef(false);
+  const dragStateRef = useRef({
+    isDragging: false,
+    startX: 0,
+    scrollLeft: 0,
+  });
   const [isGalleryVisible, setIsGalleryVisible] = useState(false);
+
+  function scrollGallery(direction: -1 | 1) {
+    const gallery = galleryRef.current;
+    if (!gallery) {
+      return;
+    }
+
+    const firstCard = gallery.querySelector<HTMLElement>("[data-gallery-card]");
+    const gap = Number.parseFloat(window.getComputedStyle(gallery).columnGap || "0");
+    const step = firstCard ? firstCard.offsetWidth + gap : gallery.clientWidth * 0.8;
+
+    isGalleryPausedRef.current = true;
+    gallery.scrollBy({
+      left: direction * step,
+      behavior: "smooth",
+    });
+
+    window.setTimeout(() => {
+      isGalleryPausedRef.current = false;
+    }, 1800);
+  }
 
   useEffect(() => {
     const gallery = galleryRef.current;
@@ -91,55 +118,112 @@ export default function AboutSection() {
             </h2>
 
             <p className="mt-6 max-w-3xl text-base leading-8 text-stone-300 md:mx-auto sm:text-[1.05rem]">
-              San Bạn Yakitori is three friends with a shared passion for grilling
-              delicious yakitori over charcoal and bringing people together
-              through food.
-            </p>
-
-            <p className="mt-5 max-w-3xl text-base leading-8 text-stone-300 md:mx-auto sm:text-[1.05rem]">
-              We&apos;re a pop-up catering service serving Orange County and surrounding areas,
-              offering authentic yakitori to private events, parties, and special gatherings.
+              San Bạn Yakitori is a pop-up catering service from three friends{" "}
+              <br className="hidden md:block" />
+              who love bringing people together over charcoal-grilled skewers.
             </p>
           </div>
         </div>
 
-        <div className="hero-reveal">
-          <div
-            ref={galleryRef}
-            className="gallery-scroll -mx-5 mt-10 flex snap-x gap-3 overflow-x-auto px-5 pb-2 sm:-mx-6 sm:gap-4 sm:px-6 md:mt-12"
-            onPointerDown={() => {
-              isGalleryPausedRef.current = true;
-            }}
-            onPointerUp={() => {
-              window.setTimeout(() => {
-                isGalleryPausedRef.current = false;
-              }, 2200);
-            }}
-            onPointerCancel={() => {
-              isGalleryPausedRef.current = false;
-            }}
-            onMouseEnter={() => {
-              isGalleryPausedRef.current = true;
-            }}
-            onMouseLeave={() => {
-              isGalleryPausedRef.current = false;
-            }}
+        <div className="hero-reveal relative">
+          <button
+            type="button"
+            onClick={() => scrollGallery(-1)}
+            className="absolute left-0 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/65 text-white backdrop-blur transition hover:border-white/45 hover:bg-white hover:text-black md:flex"
+            aria-label="Scroll gallery left"
           >
-            {galleryImages.map((image) => (
-              <div
-                key={image.src}
-                data-gallery-card
-                className="relative aspect-[4/3] w-[42vw] flex-none snap-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] sm:w-[48vw] md:w-[31%]"
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 31vw, (min-width: 640px) 48vw, 42vw"
-                />
-              </div>
-            ))}
+            <ChevronLeft size={22} />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scrollGallery(1)}
+            className="absolute right-0 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/65 text-white backdrop-blur transition hover:border-white/45 hover:bg-white hover:text-black md:flex"
+            aria-label="Scroll gallery right"
+          >
+            <ChevronRight size={22} />
+          </button>
+
+          <div className="relative">
+            <div
+              ref={galleryRef}
+              className="gallery-scroll -mx-5 mt-8 flex cursor-grab select-none snap-x gap-3 overflow-x-auto px-5 pb-2 active:cursor-grabbing sm:-mx-6 sm:gap-4 sm:px-6 md:mt-10 lg:-mx-8 lg:px-8"
+              onPointerDown={(event) => {
+                const gallery = galleryRef.current;
+                if (!gallery) {
+                  return;
+                }
+
+                isGalleryPausedRef.current = true;
+                dragStateRef.current = {
+                  isDragging: true,
+                  startX: event.clientX,
+                  scrollLeft: gallery.scrollLeft,
+                };
+                gallery.setPointerCapture(event.pointerId);
+              }}
+              onPointerMove={(event) => {
+                const gallery = galleryRef.current;
+                const dragState = dragStateRef.current;
+                if (!gallery || !dragState.isDragging) {
+                  return;
+                }
+
+                event.preventDefault();
+                gallery.scrollLeft = dragState.scrollLeft - (event.clientX - dragState.startX);
+              }}
+              onPointerUp={(event) => {
+                const gallery = galleryRef.current;
+                dragStateRef.current.isDragging = false;
+                gallery?.releasePointerCapture(event.pointerId);
+                window.setTimeout(() => {
+                  isGalleryPausedRef.current = false;
+                }, 2200);
+              }}
+              onPointerCancel={() => {
+                dragStateRef.current.isDragging = false;
+                isGalleryPausedRef.current = false;
+              }}
+              onMouseEnter={() => {
+                isGalleryPausedRef.current = true;
+              }}
+              onMouseLeave={() => {
+                dragStateRef.current.isDragging = false;
+                isGalleryPausedRef.current = false;
+              }}
+              onWheel={(event) => {
+                const gallery = galleryRef.current;
+                if (!gallery || Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+                  return;
+                }
+
+                const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+                if (maxScroll <= 0) {
+                  return;
+                }
+
+                event.preventDefault();
+                gallery.scrollLeft += event.deltaY;
+              }}
+            >
+              {galleryImages.map((image) => (
+                <div
+                  key={image.src}
+                  data-gallery-card
+                  className="relative aspect-[4/3] w-[42vw] flex-none snap-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.035] sm:w-[48vw] md:w-[36%] lg:w-[30%]"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    draggable={false}
+                    className="pointer-events-none object-cover"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 768px) 36vw, (min-width: 640px) 48vw, 42vw"
+                  />
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </div>
