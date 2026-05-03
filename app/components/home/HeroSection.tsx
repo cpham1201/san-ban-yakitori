@@ -24,8 +24,15 @@ export default function HeroSection() {
           </h1>
 
           <p className="hero-reveal mt-5 max-w-[21rem] text-base leading-7 text-stone-100 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:mt-6 sm:max-w-xl sm:text-xl sm:leading-8">
-            Authentic Japanese yakitori grilled fresh for private events across OC, LA,
-            and nearby areas.
+            <span className="block sm:inline">
+              Authentic Japanese yakitori grilled fresh
+            </span>{" "}
+            <span className="block sm:inline">
+              for birthdays, private events, and special
+            </span>{" "}
+            <span className="block sm:inline">
+              celebrations across OC, LA, and nearby areas.
+            </span>
           </p>
         </div>
       </div>
