@@ -17,7 +17,8 @@ export type SkewerOption = 200 | 300 | 500 | 700 | 1000;
 export type ExperienceItem = {
   name: "Classic" | "Premium" | "Signature";
   description: string;
-  menuMix: string;
+  selectionDescription: string;
+  approximateMix: string;
   includes: string[];
   mostPopular?: boolean;
   prices: Record<SkewerOption, string>;
@@ -36,7 +37,9 @@ export const experiences: ExperienceItem[] = [
     name: "Classic",
     description:
       "Perfect for birthdays, family gatherings, and casual celebrations.",
-    menuMix: "Classic 80% • Premium 20%",
+    selectionDescription:
+      "A classic-forward selection with a touch of premium specialties.",
+    approximateMix: "80% Classic • 20% Premium",
     includes: ["Mostly classic yakitori", "A touch of premium selections"],
     prices: {
       200: "$1,200",
@@ -50,7 +53,9 @@ export const experiences: ExperienceItem[] = [
     name: "Premium",
     description:
       "Our most requested experience, balancing signature favorites with premium selections.",
-    menuMix: "Classic 70% • Premium 30%",
+    selectionDescription:
+      "Our signature blend of classic favorites and premium specialties.",
+    approximateMix: "70% Classic • 30% Premium",
     includes: ["Balanced premium selection", "Best overall value"],
     mostPopular: true,
     prices: {
@@ -65,7 +70,8 @@ export const experiences: ExperienceItem[] = [
     name: "Signature",
     description:
       "Designed for weddings, luxury events, and unforgettable dining experiences.",
-    menuMix: "Classic 60% • Premium 40%",
+    selectionDescription: "Our largest selection of premium specialties.",
+    approximateMix: "60% Classic • 40% Premium",
     includes: [
       "Highest selection of premium skewers",
       "Ideal for upscale celebrations",

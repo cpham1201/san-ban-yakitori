@@ -65,12 +65,10 @@ export default function PackagesSection() {
                   {experience.description}
                 </p>
 
-                <div className="mt-4 sm:mt-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
-                    Menu Mix
-                  </p>
-                  <p className="mt-2 text-[0.95rem] font-semibold leading-6 text-stone-200">
-                    {experience.menuMix}
+                <div className="mt-3 text-[0.95rem] leading-6 text-stone-300 sm:mt-3.5">
+                  <p>{experience.selectionDescription}</p>
+                  <p className="mt-1 text-sm italic text-stone-500">
+                    {experience.approximateMix}
                   </p>
                 </div>
 
