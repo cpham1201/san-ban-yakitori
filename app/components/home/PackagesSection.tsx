@@ -34,8 +34,15 @@ export default function PackagesSection() {
             <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
               Every experience includes
             </p>
-            <p className="mt-3 text-center text-[0.95rem] font-semibold leading-7 text-stone-200 sm:mt-4">
-              {sharedExperienceIncludes.join(" • ")}
+            <p className="mt-3 flex flex-col items-center gap-1 text-center text-[0.95rem] font-semibold leading-6 text-stone-200 sm:mt-4 sm:block sm:leading-7">
+              {sharedExperienceIncludes.map((item, index) => (
+                <span key={item} className="whitespace-nowrap">
+                  {index > 0 ? (
+                    <span className="hidden sm:inline"> • </span>
+                  ) : null}
+                  {item}
+                </span>
+              ))}
             </p>
           </div>
         </Reveal>
@@ -67,7 +74,7 @@ export default function PackagesSection() {
 
                 <div className="mt-3 text-[0.95rem] leading-6 text-stone-300 sm:mt-3.5">
                   <p>{experience.selectionDescription}</p>
-                  <p className="mt-1 text-sm italic text-stone-500">
+                  <p className="mt-1 whitespace-nowrap text-[0.68rem] italic leading-5 text-stone-500 min-[390px]:text-[0.72rem] sm:text-xs xl:text-sm">
                     {experience.approximateMix}
                   </p>
                 </div>

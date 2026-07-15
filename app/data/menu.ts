@@ -28,8 +28,8 @@ export const skewerOptions: SkewerOption[] = [200, 300, 500, 700, 1000];
 
 export const sharedExperienceIncludes = [
   "Live binchotan grilling",
-  "Professional setup & cleanup",
   "Setup & breakdown",
+  "Professional cleanup",
 ];
 
 export const experiences: ExperienceItem[] = [
@@ -39,7 +39,7 @@ export const experiences: ExperienceItem[] = [
       "Perfect for birthdays, family gatherings, and casual celebrations.",
     selectionDescription:
       "A classic-forward selection with a touch of premium specialties.",
-    approximateMix: "80% Classic • 20% Premium",
+    approximateMix: "80% Classic Yakitori • 20% Premium Yakitori",
     includes: ["Mostly classic yakitori", "A touch of premium selections"],
     prices: {
       200: "$1,200",
@@ -55,7 +55,7 @@ export const experiences: ExperienceItem[] = [
       "Our most requested experience, balancing signature favorites with premium selections.",
     selectionDescription:
       "Our signature blend of classic favorites and premium specialties.",
-    approximateMix: "70% Classic • 30% Premium",
+    approximateMix: "70% Classic Yakitori • 30% Premium Yakitori",
     includes: ["Balanced premium selection", "Best overall value"],
     mostPopular: true,
     prices: {
@@ -71,7 +71,7 @@ export const experiences: ExperienceItem[] = [
     description:
       "Designed for weddings, luxury events, and unforgettable dining experiences.",
     selectionDescription: "Our largest selection of premium specialties.",
-    approximateMix: "60% Classic • 40% Premium",
+    approximateMix: "60% Classic Yakitori • 40% Premium Yakitori",
     includes: [
       "Highest selection of premium skewers",
       "Ideal for upscale celebrations",
