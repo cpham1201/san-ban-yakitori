@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Check, AlertCircle, ArrowRight } from "lucide-react";
+import { experiences, skewerOptions } from "../data/menu";
 
 function getTodayString() {
   const today = new Date();
@@ -37,6 +38,27 @@ export default function InquiryForm() {
     type: null,
     message: "",
   });
+
+  useEffect(() => {
+    function handleExperienceSelect(event: Event) {
+      const selectedExperience = (event as CustomEvent<string>).detail;
+
+      if (!selectedExperience) {
+        return;
+      }
+
+      setForm((prev) => ({
+        ...prev,
+        preferredPackage: selectedExperience,
+      }));
+    }
+
+    window.addEventListener("sanban:select-experience", handleExperienceSelect);
+
+    return () => {
+      window.removeEventListener("sanban:select-experience", handleExperienceSelect);
+    };
+  }, []);
 
   function updateField(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -273,7 +295,7 @@ export default function InquiryForm() {
         </div>
 
 
-        {/* EVENT TYPE / PACKAGE */}
+        {/* EVENT TYPE / EXPERIENCE */}
         <div className="grid gap-5 sm:grid-cols-2">
 
           <div className="min-w-0">
@@ -311,7 +333,7 @@ export default function InquiryForm() {
           <div className="min-w-0">
 
             <label className="mb-2 block text-[0.95rem] text-stone-300">
-              Preferred Package
+              Preferred Experience
             </label>
 
             <div className="relative">
@@ -323,11 +345,16 @@ export default function InquiryForm() {
                 className="w-full appearance-none rounded-lg border border-white/15 bg-black/70 px-4 py-3.5 pr-10 text-white outline-none transition hover:border-white/25 focus:border-white/55"
               >
                 <option value="">Not sure yet</option>
-                <option>Package A</option>
-                <option>Package B</option>
-                <option>Package C</option>
-                <option>Package D</option>
-                <option>Package E</option>
+                {experiences.map((experience) => (
+                  <optgroup key={experience.name} label={experience.name}>
+                    <option>{experience.name} - Not sure yet</option>
+                    {skewerOptions.map((skewers) => (
+                      <option key={`${experience.name}-${skewers}`}>
+                        {experience.name} - {skewers.toLocaleString()} Skewers
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
               </select>
 
               <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-stone-400">

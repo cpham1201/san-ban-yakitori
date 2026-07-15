@@ -67,10 +67,10 @@ export default function Navbar() {
           <nav className="hidden items-center gap-7 text-sm text-stone-300 md:flex">
             <button
               type="button"
-              onClick={() => handleNavClick("packages")}
+              onClick={() => handleNavClick("experiences")}
               className="transition hover:text-white"
             >
-              Packages
+              Experiences
             </button>
             <button
               type="button"
@@ -129,10 +129,10 @@ export default function Navbar() {
       >
         <nav className="mx-auto flex max-w-6xl flex-col px-4 py-5 text-stone-200">
           <button
-            onClick={() => handleNavClick("packages")}
+            onClick={() => handleNavClick("experiences")}
             className="group flex min-h-12 items-center justify-between border-b border-white/10 px-1 text-left text-base transition hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-white/35"
           >
-            <span>Packages</span>
+            <span>Experiences</span>
             <ChevronRight
               size={20}
               className="text-stone-500 transition group-hover:translate-x-1 group-hover:text-white"

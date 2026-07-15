@@ -129,7 +129,7 @@ const structuredData = {
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Yakitori Catering Packages",
+    name: "Yakitori Catering Experiences",
     itemListElement: [
       {
         "@type": "Offer",

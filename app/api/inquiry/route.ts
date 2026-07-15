@@ -41,7 +41,7 @@ Event Date: ${eventDate}
 Event Location / City: ${eventLocation}
 Guest Count: ${guestCount}
 Event Type: ${eventType}
-Preferred Package: ${preferredPackage || "Not sure yet"}
+Preferred Experience: ${preferredPackage || "Not sure yet"}
 
 Message:
 ${message || "No additional details provided."}

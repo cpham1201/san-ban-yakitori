@@ -6,116 +6,176 @@ export type SelectedItem = {
 
 export type MenuItem = {
   name: string;
+  subtitle?: string;
   clickable?: boolean;
   description?: string;
   image?: string;
 };
 
-export type PackageItem = {
-  name: string;
-  skewers: string;
-  guests: string;
-  service: string;
+export type SkewerOption = 200 | 300 | 500 | 700 | 1000;
+
+export type ExperienceItem = {
+  name: "Classic" | "Premium" | "Signature";
+  description: string;
+  menuMix: string;
+  includes: string[];
+  mostPopular?: boolean;
+  prices: Record<SkewerOption, string>;
 };
 
-export const packages: PackageItem[] = [
+export const skewerOptions: SkewerOption[] = [200, 300, 500, 700, 1000];
+
+export const sharedExperienceIncludes = [
+  "Live binchotan grilling",
+  "Professional setup & cleanup",
+  "Setup & breakdown",
+];
+
+export const experiences: ExperienceItem[] = [
   {
-    name: "Package A",
-    skewers: "200 skewers",
-    guests: "Best for 25–35 guests",
-    service: "2 hours live grilling",
+    name: "Classic",
+    description:
+      "Perfect for birthdays, family gatherings, and casual celebrations.",
+    menuMix: "Classic 80% • Premium 20%",
+    includes: ["Mostly classic yakitori", "A touch of premium selections"],
+    prices: {
+      200: "$1,200",
+      300: "$1,700",
+      500: "$2,300",
+      700: "$2,900",
+      1000: "$3,900",
+    },
   },
   {
-    name: "Package B",
-    skewers: "300 skewers",
-    guests: "Best for 35–50 guests",
-    service: "2 hours live grilling",
+    name: "Premium",
+    description:
+      "Our most requested experience, balancing signature favorites with premium selections.",
+    menuMix: "Classic 70% • Premium 30%",
+    includes: ["Balanced premium selection", "Best overall value"],
+    mostPopular: true,
+    prices: {
+      200: "$1,400",
+      300: "$1,900",
+      500: "$2,600",
+      700: "$3,300",
+      1000: "$4,400",
+    },
   },
   {
-    name: "Package C",
-    skewers: "500 skewers",
-    guests: "Best for 60–85 guests",
-    service: "2–3 hours live grilling",
-  },
-  {
-    name: "Package D",
-    skewers: "700 skewers",
-    guests: "Best for 90–120 guests",
-    service: "2–3 hours live grilling",
-  },
-  {
-    name: "Package E",
-    skewers: "1000 skewers",
-    guests: "Best for 130–200 guests",
-    service: "3+ hours live grilling",
+    name: "Signature",
+    description:
+      "Designed for weddings, luxury events, and unforgettable dining experiences.",
+    menuMix: "Classic 60% • Premium 40%",
+    includes: [
+      "Highest selection of premium skewers",
+      "Ideal for upscale celebrations",
+    ],
+    prices: {
+      200: "$1,600",
+      300: "$2,200",
+      500: "$3,000",
+      700: "$3,800",
+      1000: "$5,000",
+    },
   },
 ];
 
 export const menuA: MenuItem[] = [
   {
     name: "Negima",
+    subtitle: "Chicken Thigh & Japanese Scallion",
     clickable: true,
     description:
       "Juicy chicken thigh and Japanese scallion grilled over binchotan.",
-    image: "/negimav3.jpg",
+    image: "/negima-updated.jpg",
   },
   {
     name: "Tsukune",
+    subtitle: "Chicken Meatball",
     clickable: true,
     description:
       "Hand-formed chicken meatball glazed with tare and grilled over binchotan.",
-    image: "/tsukunev3.jpg",
+    image: "/tsukune-updated.jpg",
   },
   {
     name: "Chicken Heart",
+    subtitle: "Chicken Heart",
     clickable: true,
     description: "Tender chicken heart grilled over binchotan.",
-    image: "/chickenheartsv2.jpg",
+    image: "/chicken-heart-updated.jpg",
   },
   {
     name: "Chicken Gizzard",
+    subtitle: "Chicken Gizzard",
     clickable: true,
     description: "Tender chicken gizzard grilled over binchotan.",
-    image: "/chicken-gizzardv2.jpg",
+    image: "/chicken-gizzard-updated.jpg",
   },
   {
     name: "Mushroom",
+    subtitle: "Grilled Mushroom",
     clickable: true,
     description: "Fresh mushroom grilled over binchotan.",
     image: "/mushroomv2.jpg",
   },
   {
+    name: "Corn",
+    subtitle: "Sweet Corn",
+    clickable: true,
+    description: "Sweet corn grilled over binchotan.",
+    image: "/corn-updated.jpg",
+  },
+  {
     name: "Cherry Tomatoes",
+    subtitle: "Charred Cherry Tomatoes",
     clickable: true,
     description: "Juicy cherry tomatoes grilled over binchotan.",
-    image: "/cherry-tomatoesv2.jpg",
+    image: "/cherry-tomatoes-updated.jpg",
   },
   {
     name: "Shishito Peppers",
+    subtitle: "Grilled Shishito",
     clickable: true,
     description: "Delicate shishito peppers grilled over binchotan.",
-    image: "/shishito2.jpg",
+    image: "/shishito-peppers-updated.jpg",
   },
 ];
 
 export const menuB: MenuItem[] = [
   {
-    name: "Top Sirloin Beef Cubes",
+    name: "Harami",
+    subtitle: "Outside Skirt Steak",
     clickable: true,
-    description: "Tender top sirloin beef cubes grilled over binchotan.",
-    image: "/beef-cubesv2.jpg",
+    description: "Tender outside skirt steak grilled over binchotan.",
+    image: "/outside-skirt-steak.jpg",
   },
   {
     name: "Pork Belly",
+    subtitle: "Charcoal-Grilled Pork Belly",
     clickable: true,
     description: "Tender pork belly grilled over binchotan.",
-    image: "/pork-bellyv2.jpg",
+    image: "/pork-belly-updated.jpg",
   },
   {
-    name: "Bacon-Wrapped Shishito Peppers",
+    name: "Chicken Wing",
+    subtitle: "Whole Chicken Wing",
+    clickable: true,
+    description: "Juicy chicken wing grilled over binchotan.",
+    image: "/chicken-wing-updated.jpg",
+  },
+  {
+    name: "Chicken Skin",
+    subtitle: "Crispy Chicken Skin Skewer",
+    clickable: true,
+    description: "Crispy chicken skin grilled over binchotan.",
+    image: "/chicken-skin-updated.jpg",
+  },
+  {
+    name: "Bacon-Wrapped Shishito",
+    subtitle: "Shishito Wrapped in Bacon",
     clickable: true,
     description:
       "Delicate shishito peppers wrapped in bacon and grilled over binchotan.",
-    image: "/bacon-wrapped-shishito-peppersv2.jpg",
+    image: "/bacon-wrapped-shishito-updated.jpg",
   },
 ];

@@ -1,56 +1,143 @@
-import { packages } from "@/app/data/menu";
+"use client";
+
+import {
+  experiences,
+  sharedExperienceIncludes,
+  skewerOptions,
+} from "@/app/data/menu";
 import Reveal from "../Reveal";
 
 export default function PackagesSection() {
+  function handleExperienceRequest(experienceName: string) {
+    window.dispatchEvent(
+      new CustomEvent("sanban:select-experience", {
+        detail: `${experienceName} - Not sure yet`,
+      })
+    );
+  }
+
   return (
-    <section id="packages" className="scroll-mt-14 border-y border-white/10 bg-black">
+    <section id="experiences" className="scroll-mt-14 border-y border-white/10 bg-black">
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-20">
-        <Reveal className="mb-9 text-center sm:mb-12">
-          <h2 className="text-2xl font-semibold text-white sm:text-4xl">Packages</h2>
+        <Reveal className="mb-8 text-center sm:mb-10">
+          <h2 className="text-2xl font-semibold text-white sm:text-4xl">
+            Choose Your Experience
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[0.95rem] leading-7 text-stone-300 sm:text-base">
+            Select the experience that best fits your event.
+          </p>
           <div className="mx-auto mt-4 h-px w-16 bg-white/25"></div>
         </Reveal>
 
-        <div className="grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-5">
-          {packages.map((pkg, index) => (
-            <Reveal key={pkg.name} delay={index * 70}>
-              <div className="group flex h-full flex-col rounded-lg border border-white/10 bg-white/[0.035] p-4 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06] sm:p-5">
-                <div className="mb-4 flex items-center justify-between gap-4 border-b border-white/10 pb-4 sm:mb-6">
-                  <h3 className="text-sm font-semibold text-white sm:text-[0.95rem]">
-                    {pkg.name}
+        <Reveal delay={80} className="mx-auto mb-9 max-w-3xl sm:mb-12">
+          <div className="rounded-lg border border-white/10 bg-white/[0.035] px-5 py-3.5 sm:px-6 sm:py-4">
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
+              Every experience includes
+            </p>
+            <p className="mt-3 text-center text-[0.95rem] font-semibold leading-7 text-stone-200 sm:mt-4">
+              {sharedExperienceIncludes.join(" • ")}
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid items-center gap-5 lg:grid-cols-3">
+          {experiences.map((experience, index) => (
+            <Reveal key={experience.name} delay={index * 70}>
+              <article
+                className={`group relative flex h-full flex-col rounded-lg border p-5 transition-all duration-300 hover:-translate-y-1 sm:p-6 ${
+                  experience.mostPopular
+                    ? "z-10 border-white/45 bg-white/[0.095] shadow-2xl shadow-black/60 lg:scale-[1.05]"
+                    : "border-white/10 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]"
+                }`}
+              >
+                <div className="flex min-h-9 items-start justify-between gap-4 border-b border-white/10 pb-3.5 sm:pb-4">
+                  <h3 className="text-xl font-semibold text-white sm:text-2xl">
+                    {experience.name}
                   </h3>
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/[0.04] text-[0.7rem] font-semibold text-stone-200 sm:h-8 sm:w-8 sm:text-xs">
-                    {index + 1}
-                  </span>
+                  {experience.mostPopular ? (
+                    <span className="rounded-full border border-white/25 bg-white px-2.5 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-black sm:px-3 sm:py-1 sm:text-[0.68rem] sm:tracking-[0.12em]">
+                      Most Popular
+                    </span>
+                  ) : null}
                 </div>
 
-                <p className="text-lg font-semibold leading-none text-white sm:text-xl">
-                  {pkg.skewers}
-                </p>
-                <p className="mt-2 text-[0.95rem] leading-6 text-stone-300 sm:text-base lg:whitespace-nowrap lg:text-[0.95rem]">
-                  {pkg.guests}
+                <p className="mt-3.5 flex-1 text-[0.95rem] leading-7 text-stone-300 sm:mt-4 sm:text-base">
+                  {experience.description}
                 </p>
 
-                <ul className="mt-5 flex flex-1 flex-col justify-end divide-y divide-white/10 border-t border-white/10 text-[0.95rem] leading-6 text-stone-300 sm:mt-7 sm:text-base">
-                  <li className="flex items-center justify-between gap-4 py-2.5 sm:py-3">
-                    <span>{pkg.service}</span>
-                    <span className="text-xs uppercase tracking-[0.14em] text-stone-500">
-                      Service
-                    </span>
-                  </li>
-                  <li className="flex items-center justify-between gap-4 py-2.5 sm:py-3">
-                    <span>Setup + breakdown</span>
-                    <span className="text-xs uppercase tracking-[0.14em] text-stone-500">
-                      Included
-                    </span>
-                  </li>
+                <div className="mt-4 sm:mt-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
+                    Menu Mix
+                  </p>
+                  <p className="mt-2 text-[0.95rem] font-semibold leading-6 text-stone-200">
+                    {experience.menuMix}
+                  </p>
+                </div>
+
+                <div className="mt-4 sm:mt-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
+                    Highlights
+                  </p>
+                  <ul className="mt-2 space-y-1.5 text-[0.95rem] leading-6 text-stone-300 sm:mt-2.5 sm:space-y-2">
+                    {experience.includes.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/70" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-4 border-t border-white/10 pt-3.5 sm:mt-5 sm:pt-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-500">
+                    Starting at
+                  </p>
+                  <p className="mt-1.5 text-4xl font-semibold leading-none text-white">
+                    {experience.prices[200]}
+                  </p>
+                </div>
+
+                <ul className="mt-3 divide-y divide-white/10 border-y border-white/10 text-[0.92rem] text-stone-200">
+                  {skewerOptions.map((skewers) => (
+                    <li
+                      key={skewers}
+                      className="flex items-center justify-between gap-4 py-2"
+                    >
+                      <span className="font-medium text-stone-100">
+                        {skewers.toLocaleString()} Skewers
+                      </span>
+                      <span className="font-semibold text-white">
+                        {experience.prices[skewers]}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
-              </div>
+
+                <a
+                  href="#contact"
+                  onClick={() => handleExperienceRequest(experience.name)}
+                  className={`mt-6 inline-flex min-h-11 items-center justify-center rounded-full px-5 py-2.5 text-center text-[0.78rem] font-semibold uppercase tracking-[0.1em] transition-all duration-300 hover:-translate-y-0.5 ${
+                    experience.mostPopular
+                      ? "bg-white text-black hover:bg-stone-200"
+                      : "border border-white/35 text-white hover:bg-white hover:text-black"
+                  }`}
+                >
+                  Request {experience.name}
+                </a>
+              </article>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={160} className="mx-auto mt-8 max-w-3xl text-center text-base leading-7 text-stone-300">
-          <p>Please inquire for pricing and menu details.</p>
+        <Reveal delay={220} className="mx-auto mt-8 max-w-3xl text-center">
+          <p className="text-xs leading-5 text-stone-500">
+            Starting prices are based on Orange County events. Final pricing may
+            vary depending on location and custom requests.
+          </p>
+          <p className="mt-3 text-[0.95rem] font-semibold leading-7 text-stone-200">
+            Need more than 1,000 skewers or a custom menu? Contact us for a custom
+            proposal.
+          </p>
         </Reveal>
       </div>
     </section>
